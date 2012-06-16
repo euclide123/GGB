@@ -128,16 +128,12 @@ Func act3sellRepair()
 	$botInTown=1
 	Sleep(8900)
 	;; on va au npc en haut a droite qui vend les potions
-	MouseClick("left",886,259)
-	sleep(1500)
-	MouseClick("left",1184,798)
+	MouseClick("left",36,617)
+	sleep(1800)
+	MouseClick("left",127,144)
 	Sleep(2000)
-	MouseClick("left",1232,652)
-	Sleep(2000)
-	MouseClick("left",1035,499)
-	Sleep(1500)
-	MouseClick("left",715,302)
-	Sleep(1500)
+	MouseClick("left",487,434)
+	Sleep(900)
 	repair()
 	sleep(500)
 	sellItems()
@@ -173,10 +169,20 @@ Func act1sellRepair()
 EndFunc
 
 Func repair()
-	MouseClick("left",465,324)
-	sleep(500)
-	MouseClick("left",234,536)
-	sleep(500)
+
+;;;
+		Switch $act
+		Case 1 
+			MouseClick("left",465,551)
+			sleep(500)
+			MouseClick("left",234,536)
+			sleep(500)
+		Case 3
+			MouseClick("left",465,324)
+			sleep(500)
+			MouseClick("left",234,536)
+			sleep(500)
+	EndSwitch	
 EndFunc
 
 Func sellItems()
