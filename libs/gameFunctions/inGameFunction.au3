@@ -27,7 +27,7 @@ Func loadGame()
 ;			Switch $runBoss
 
 ;		Case $ZONE_ISKATU 
-;			act1sellRepair()
+			act1sellRepair()
 ;		Case $TYPE_DANK_CELLAR
 ;			act3sellRepair()
 
