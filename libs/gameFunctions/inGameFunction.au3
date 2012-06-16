@@ -174,7 +174,7 @@ Func repair()
 local $act = Int($makequest/100)
 		Switch $act
 		Case 1 
-			MouseClick("left",465,551)
+			MouseClick("left",469,435)
 			sleep(500)
 			MouseClick("left",234,536)
 			sleep(500)
