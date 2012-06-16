@@ -12,11 +12,11 @@
 Func act1moveToSarkoth()
 
 mouseClick("left",238, 232)
-	sleep(2500)
+	sleep(2300)
 	mouseClick("left",21, 374)
-	sleep(3500)
+	sleep(3300)
 	mouseClick("left",24, 398)
-	sleep(3500)
+	sleep(3000)
 	mouseClick("left",12, 515)
 	sleep(1300)
 mouseClick("left",202, 419)
@@ -46,7 +46,7 @@ mouseClick("left",801, 261)
 	
 	
 	MouseClick("left",40,836)	
-	sleep(4000)	
+	sleep(3800)	
 	MouseClick("left",375,258)
 	sleep(2000)		
 	MouseClick("left",864,175)	
