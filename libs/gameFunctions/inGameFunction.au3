@@ -29,7 +29,7 @@ Func loadGame()
 			act1sellRepair()
 ;		Case $TYPE_DANK_CELLAR
 ;			act3sellRepair()
-;	EndSwitch	
+	EndSwitch	
 	EndIf
 	
 	return 0
