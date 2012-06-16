@@ -26,9 +26,9 @@ Func loadGame()
 	If Mod($nbRun,$runModRepSell) == 0 Then
 			Switch $runBoss
 		Case $ZONE_ISKATU 
+			act3sellRepair()
+		Case $TYPE_DANK_CELLAR
 			act1sellRepair()
-;		Case $TYPE_DANK_CELLAR
-;			act3sellRepair()
 	EndSwitch	
 	EndIf
 	
