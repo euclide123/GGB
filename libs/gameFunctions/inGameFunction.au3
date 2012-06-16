@@ -33,7 +33,7 @@ Func loadGame()
 
 ;	EndSwitch
 	
-	EndIf
+;	EndIf
 	
 	return 0
 EndFunc
