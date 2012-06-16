@@ -22,7 +22,7 @@ Func loadGame()
 
 	choseBoss()	
 
-				MsgBox(0,"",$runBoss)
+
 	If Mod($nbRun,$runModRepSell) == 0 Then
 			Switch $runBoss
 
@@ -40,6 +40,7 @@ EndFunc
 
 
 func skipCinematic()
+				MsgBox(0,"",Skip cinema)
 	$maxLoop = 0
 	while ("000000" <> hex(PixelGetColor (517,37),6)) And $maxLoop <= $cinmaticTimeout And checkGameStatus() And checkInGame()
 		Sleep(100)
