@@ -29,18 +29,9 @@ mouseClick("left",801, 261)
 	while $cellarOpen <= $findCellarTimeOut And checkGameStatus() And checkInGame()
 		$pos = PixelSearch(1012,21,1015,25,0x03070A,2)
 		If not @error Then
-			MouseClick("left",$pos[0],$pos[1]+80)
-			sleep(1000)
+		;rien a faire
 			send("{SPACE}")
-			sleep(500)
-			send("{SPACE}")
-			sleep(500)
-			send("{SPACE}")
-			sleep(500)
-			send("{SPACE}")
-			sleep(500)
-			send("{SPACE}")
-			sleep(500)
+	
 			ExitLoop
 		EndIf
 		sleep(100)
@@ -61,6 +52,7 @@ mouseClick("left",801, 261)
 	MouseClick("left",864,175)	
 	sleep(2000)		
 	MouseClick("left",254,366)
+	sleep(800)
 	
 		attack()
 		

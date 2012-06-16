@@ -23,16 +23,13 @@ Func loadGame()
 	choseBoss()	
 
 
-;	If Mod($nbRun,$runModRepSell) == 0 Then
+	If Mod($nbRun,$runModRepSell) == 0 Then
 ;			Switch $runBoss
-
 ;		Case $ZONE_ISKATU 
 			act1sellRepair()
 ;		Case $TYPE_DANK_CELLAR
 ;			act3sellRepair()
-
-;	EndSwitch
-	
+;	EndSwitch	
 ;	EndIf
 	
 	return 0
