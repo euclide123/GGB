@@ -6,7 +6,7 @@ sleep (2000)
 Func startQuest()
 
 	If $makequest=111 then
-	$act=1
+
 		MouseClick("left",501,259,15)
 		sleep(200)
 		MouseClick("left",239,489)
@@ -19,7 +19,7 @@ Func startQuest()
 		sleep(1000)
 		
 	ElseIf $makequest=122 then
-	$act=1
+
 		MouseClick("left",501,259,15)
 		sleep(200)
 		MouseClick("left",239,489)

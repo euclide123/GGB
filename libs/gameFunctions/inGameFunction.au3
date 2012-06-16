@@ -171,6 +171,7 @@ EndFunc
 Func repair()
 
 ;;;
+local $act = Int($makequest/100)
 		Switch $act
 		Case 1 
 			MouseClick("left",465,551)
