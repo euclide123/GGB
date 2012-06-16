@@ -25,6 +25,7 @@ Func loadGame()
 	
 	If Mod($nbRun,$runModRepSell) == 0 Then
 			Switch $runBoss
+			MsgBox(0,"",$runBoss)
 		Case $ZONE_ISKATU 
 			act1sellRepair()
 		Case $TYPE_DANK_CELLAR
