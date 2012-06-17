@@ -27,7 +27,7 @@ Send("2")
 Until $i = 6
 
 Send("{SHIFTUP}")
-	EndSwitch	
+		
 		
 		Case 3
 ;skill recommande http://eu.battle.net/d3/en/calculator/witch-doctor#ZfUdPQ!TUe!acZZbZ
