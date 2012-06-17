@@ -12,9 +12,9 @@
 Func act1moveToSarkoth()
 ;ici ajouter fonction buff une fois qu'elle sera créé
 mouseClick("middle",238, 232)
-	sleep(2450)
+	sleep(2550)
 	mouseClick("middle",21, 374)
-	sleep(2450)
+	sleep(2550)
 	mouseClick("middle",24, 398)
 	sleep(2450)
 	mouseClick("middle",12, 515)
