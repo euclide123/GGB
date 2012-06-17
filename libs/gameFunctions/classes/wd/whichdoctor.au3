@@ -12,9 +12,9 @@ Sleep(Random(10,30,1))
 Local $i = 0
 Do
 
-MouseClick("right", Random(550,580,1), Random(700,749,1))
+MouseClick("right", Random(400,580,1), Random(550,749,1))
 Sleep(Random(10,30,1))
-MouseClick("left", Random(550,580,1), Random(700,749,1))
+MouseClick("left", Random(400,580,1), Random(550,749,1))
 Send("1")
 Sleep(Random(10,30,1))
 Send("2")
