@@ -7,50 +7,9 @@
  
 
 #ce ----------------------------------------------------------------------------
-
-Func writeLog($message)
-	Local $date="[" & @MDAY & "/" & @MON & "/" & @YEAR & " " & @HOUR & ":" & @MIN & ":" & @SEC & "] "
-	GUICtrlSetData($gLogs, $date & $message & @CRLF & GUICtrlRead($gLogs))
-EndFunc
-
-Func startRunStat()
-	$runStartTime = @MDAY & "/" & @MON & "/" & @YEAR & " " & @HOUR & ":" & @MIN & ":" & @SEC
-	$runStartTimeCalc = _NowCalc()
-EndFunc	
-
-Func endRunStat()
-	$nbRun += 1
-	$runTime = getGameLength()
-	$runTimeList[$nbRun] = $runTime
-EndFunc
-
-Func getGameLength()
-	return _DateDiff("s", $runStartTimeCalc, _NowCalc())
-EndFunc
-
-Func updateStats() 
-	$tempsEcoule = _DateDiff("s", $startTimeCalc, _NowCalc())
-	$hEcoule = _FormatElapsedTime($tempsEcoule)
-	
-	GUICtrlSetData($gHStart		, $startTime)
-	GUICtrlSetData($gHEcoule	, $hEcoule) ;; timenow - starttime
-	GUICtrlSetData($gNbRun		, $nbRun)
-	
-	$avgRunTime=0
-	;; calcul du temps moyen
-	If $nbRun > 0 Then
-	
-		For $i = 1 To $nbRun
-			$avgRunTime += $runTimeList[$i]
-		Next
-		
-		$avgRunTime /= $nbRun
-	
-	EndIf
-
-	GUICtrlSetData($gAvgRunTime	, _FormatElapsedTime($avgRunTime))
-EndFunc
-
+;;--
+;;	Backup le D3Prefs.txt original et remplace par celui dans configs/
+;;--
 Func diabloPrefChange()
 	If not $prefChanged Then
 		FileMove($prefPath,$prefPath & ".bkp",1)
@@ -59,6 +18,9 @@ Func diabloPrefChange()
 	EndIf
 EndFunc
 
+;;--
+;;	Remet le fichier D3Prefs.txt original du joueur
+;;--
 Func diabloPrefRestore()
 	If $prefChanged Then
 		FileDelete($prefPath)
@@ -67,55 +29,25 @@ Func diabloPrefRestore()
 	EndIf
 EndFunc
 
+;; ---
+;; Cherche / vérifie si un pixel se trouve à une position donné. On utilise pixelSearch avec un carré de 1x1 pixel pour chercher la couleur
+;; 	avec une tolérance de base à 2.
+;; pixelArray = [x,y,color]
+;; renvoi 1 si trouvé
+;; renvoi 0 si non trouvé
+;; @param $pixelArray 	le tableau avec la color et le coord
+;; @param $precisionX/Y l'aggrandissement horizontale et verticale pour la zone de recherche
+;; @param $tolerance 	la tolérance pour la recherche
+;; @return 1 si trouvé, 0 sinon
+;; ---
+Func checkPixel($pixelArray, $precisionX=0, $precisionY=0, $tolerance=2)
+	Local $pos = PixelSearch($pixelArray[0]-$precisionX,$pixelArray[1]-$precisionX,$pixelArray[0]+$precisionX,$pixelArray[1]+$precisionY,$pixelArray[2],$tolerance)
+	If @error Then
+		return 0
+	EndIf
+	return 1
+EndFunc
 
-Func _FormatElapsedTime($Input_Seconds)
-  If $Input_Seconds < 1 Then Return
-  Global $ElapsedMessage = ''
-  Global $Input = $Input_Seconds
-  Switch $Input_Seconds
-    Case 0 To 59
-      GetSeconds()
-    Case 60 To 3599
-      GetMinutes()
-      GetSeconds()
-    Case 3600 To 86399
-      GetHours()
-      GetMinutes()
-      GetSeconds()
-    Case Else
-      GetDays()
-      GetHours()
-      GetMinutes()
-      GetSeconds()
-  EndSwitch
-  Return $ElapsedMessage
-EndFunc   ;==>FormatElapsedTime
-
-Func GetDays()
-  $Days = Int($Input / 86400)
-  $Input -= ($Days * 86400)
-  $ElapsedMessage &= $Days & ' j, '
-  Return $ElapsedMessage
-EndFunc   ;==>GetDays
-
-Func GetHours()
-  $Hours = Int($Input / 3600)
-  $Input -= ($Hours * 3600)
-  $ElapsedMessage &= $Hours & ' h, '
-  Return $ElapsedMessage
-EndFunc   ;==>GetHours
-
-Func GetMinutes()
-  $Minutes = Int($Input / 60)
-  $Input -= ($Minutes * 60)
-  $ElapsedMessage &= $Minutes & ' min, '
-  Return $ElapsedMessage
-EndFunc   ;==>GetMinutes
-
-Func GetSeconds()
-  $ElapsedMessage &= Int($Input) & ' s.'
-  Return $ElapsedMessage
-EndFunc   ;==>GetSeconds
 
 ;; vérifie que le jeu est bien lancé (process OK) 
 ;; 			que la fenetre existe
@@ -133,15 +65,4 @@ Func checkGameStatus()
 	Else
 		return 0
 	EndIf
-EndFunc
-
-;; pixelArray = [x,y,color]
-;; renvoi 1 si trouvé
-;; renvoi 0 si non trouvé
-Func checkPixel($pixelArray, $precisionX=0, $precisionY=0, $tolerance=2)
-	Local $pos = PixelSearch($pixelArray[0]-$precisionX,$pixelArray[1]-$precisionX,$pixelArray[0]+$precisionX,$pixelArray[1]+$precisionY,$pixelArray[2],$tolerance)
-	If @error Then
-		return 0
-	EndIf
-	return 1
 EndFunc

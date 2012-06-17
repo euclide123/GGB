@@ -15,6 +15,8 @@ Func loadConfigs()
 	Global $gamePath		= IniRead($iniConfigFile,"generalConfig","gameExecFullPath",0)
 	Global $prefPath		= IniRead($iniConfigFile,"generalConfig","prefPath",0)
 	Global $prefAutoChange	= IniRead($iniConfigFile,"generalConfig","autoSwitchPref",1)
+	Global $autoLog			= 1
+	Global $checkForPosition= 1
 	
 	;; account info
 	Global $accountName	= IniRead($iniConfigFile,"accountConfig","email",0)

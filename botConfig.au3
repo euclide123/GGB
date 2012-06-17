@@ -358,8 +358,6 @@ Func saveConfig()
 	IniWrite($iniConfigFile,"shortcut","potionDrink", GUICtrlRead($gShortCutPotion))
 	IniWrite($iniConfigFile,"shortcut","skipDialog", GUICtrlRead($gShortcutSkip))
 	
-	
-
 	cancelConfig()
 EndFunc
 
@@ -381,5 +379,6 @@ EndFunc
 
 
 Func cancelConfig()
-   GUIDelete($configGUI)
+	loadConfigs()
+	GUIDelete($configGUI)
 EndFunc

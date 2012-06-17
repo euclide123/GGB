@@ -18,17 +18,8 @@ Func waitForGameStart()
 	If $pid <> 0 Then
 		;writeLog('Debug: process OK')
 		;; on attend que la windows diabloIII apparaisse
-		WinWait($winName)
-		
-		Sleep(15000)
-		
-		$winPos = WinGetPos($winName)
-		If $winPos[2] <> 1280 Or $winPos[3] <> 1024 Then
-			MsgBox(4096,"Erreur","Le jeu n'a pas la bonne résolution. Vérifiez votre D3Prefs.txt")
-			Exit
-		EndIf
-		
-		
+		$w = WinWait("[CLASS:D3 Main Window Class]")
+
 		$maxLoop = 0 ;; 2min
 		
 		While Not checkLoginBtn() And $maxLoop <= $gameStart

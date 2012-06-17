@@ -27,7 +27,7 @@ EndIf
 ;; configs 
 AutoItSetOption("MouseCoordMode",2)
 AutoItSetOption("PixelCoordMode",2)    
-;AutoItSetOption("MustDeclareVars", 1)  
+AutoItSetOption("MustDeclareVars", 1)  
 AutoItSetOption("GUIOnEventMode",1)
 
 ;; include des lib AutoIt
@@ -47,6 +47,8 @@ AutoItSetOption("GUIOnEventMode",1)
 #include "libs/variables.au3"
 #include "botConfig.au3"
 #include "libs/configsParsing.au3"
+#include "libs/botStats.au3"
+#include "libs/botLogMsg.au3"
 #include "libs/gameFunctions/gameChecks.au3"
 #include "libs/gameFunctions/outGameFunction.au3"
 #include "libs/gameFunctions/inGameFunction.au3"
@@ -91,7 +93,6 @@ GUISetState(@SW_SHOW)
 
 While 1
 	If $restartDiablo Then
-		$botstatus = 0
 		startBot()
 	EndIf
 	sleep(1000)
@@ -101,7 +102,6 @@ WEnd
 Func editConfig()
 	If $botStatus == 0 Then
 		openConfigGGB()
-		loadConfigs()
 	EndIf
 EndFunc
 
@@ -122,76 +122,86 @@ EndFunc
 
 Func stopBot()
 	$Paused = 0
-	
 	WinSetTitle($handlerGUI,"",$baseTitle&" - Stopped")
-	writeLog("Arrêt du Bot")
-	
-	writeLog("Restauration du fichier de config Diablo III")
+	writeLog($msgStopBot)
+	writeLog($msgPrefRestore)
 	diabloPrefRestore()
-	
-	$file = FileOpen("logs/botlogs.log",1)
-	FileWriteLine($file,"")
-	FileWriteLine($file,"")
-	FileWriteLine($file,"---------------------------------------------------------")
-	FileWriteLine($file,"| Heure Début : " & GUICtrlRead($gHStart))
-	FileWriteLine($file,"| Temps écoule : " & GUICtrlRead($gHEcoule))
-	FileWriteLine($file,"| Nombre de runs : " & GUICtrlRead($gNbRun))
-	FileWriteLine($file,"| Temps moyen par run : " & GUICtrlRead($gAvgRunTime))
-	FileWriteLine($file,"---------------------------------------------------------")
-	FileWrite($file,GUICtrlRead($gLogs))
-	FileClose($file)
-	
+	saveLogs()
 	Exit
 EndFunc
 
 
 Func startBot()
-	If $botStatus == 0 Then
-		writeLog("Mise en place du fichier de config pour le bot")
-		diabloPrefChange()
-		;; on check les config avant de lancer le bot (pour éviter les erreurs)
-		$configOk = loadConfigs()
-		If $configOk == 1 Then
-			return
+	;; si le bot n'est pas encore start
+	If $botStatus == 0 Or $restartDiablo Then
+		If Not $restartDiablo Then
+			;; init des stats du bot
+			startBotTime()
 		EndIf
+		$restartDiablo = 0
 		
-		;; on met le bon status au bot
-		$botStatus = 1
-		WinSetTitle($handlerGUI,"",$baseTitle&" - Started")
+		WinSetTitle($handlerGUI,"",$baseTitle&" - Started")		
 		
-		;; et on démarre ! :D
-		writeLog("Démarrage du Bot")
-		$startTime			= @MDAY & "/" & @MON & "/" & @YEAR & " " & @HOUR & ":" & @MIN & ":" & @SEC
-		$startTimeCalc	 	= _NowCalc()
-		GUICtrlSetData($gHStart,$startTime)
-		
-		GUISetState(@SW_MINIMIZE,$handlerGUI)
-		Run($gamePath &" -launch")
-		$error = waitForGameStart()
-		If $error == 1  Then
-			writeLog("Client non démarré ou non trouvé.")
-			killGame()
-			$restartDiablo=1 ;; restart
-			return 1
+		;; le bot lance le jeu et se log
+		If $autoLog Then
+			;; on switch la config 
+			If $prefAutoChange Then
+				writeLog($msgPrefChange)
+				diabloPrefChange()
+			EndIf
+			
+			;; on check les config avant de lancer le bot (pour éviter les erreurs)
+			$configOk = loadConfigs()
+			If $configOk == 1 Then
+				return
+			EndIf
+			
+			;; on met le bon status au bot pour empêcher un double lancement
+			$botStatus = 1
+			
+			;; et on démarre ! :D
+			writeLog($msgStartBot)
+			
+			;; on minimize le launcher du bot, (pour éviter de géner)
+			GUISetState(@SW_MINIMIZE,$handlerGUI)
+			
+			;; on lance le jeu !
+			Run($gamePath &" -launch")
+			$error = waitForGameStart()
+			
+			If $error Then
+				writeLog($msgErrorClientNotStarted)
+				killGame()
+				$restartDiablo=1 ;; restart
+				return 1
+			EndIf
+			
+			;; le bot tourne, on se log !
+			WinSetTitle($handlerGUI,"",$baseTitle&" - Running")
+			$error = login()
+			If $error Then
+				writeLog($msgErrorCannotConnect)
+				killGame()
+				$restartDiablo=1 ;; restart
+				return 1
+			EndIf
+			
+			;; actions à faire une seule fois avant de commencer le run
+			preRunActions()
 		EndIf
-		WinSetTitle($handlerGUI,"",$baseTitle&" - Running")
-		$error = login()
-		If $error Then
-			writeLog("Impossible de se connecter. Relance de diablo")
-			killGame()
-			$restartDiablo=1 ;; restart
-			return 1
-		EndIf
-		preRunActions()
+
+		;; on débute le run !
 		doRun()
 	EndIf
 EndFunc
+
 
 Func preRunActions()
 	waitForLobby()
 	leaveChannel()
 	selectChar()
 EndFunc
+
 
 Func doRun()
 	while 1
@@ -239,7 +249,7 @@ Func CheckStateAction()
 	ElseIf $state == 2 Then
 		$error = login()
 		If $error Then
-			writeLog("Impossible de se connecter. Relance de diablo")
+			writeLog($msgErrorCannotConnect)
 			killGame()
 			$restartDiablo=1 ;; restart
 			return 1
@@ -260,26 +270,26 @@ EndFunc
 ;; 4 - ingame
 Func checkGameState()
 	If Not checkGameStatus() Then
-		writeLog("Jeu planté, on relance")
+		writeLog($msgErrorGameCrash)
 		killGame()
 		return 1
 	EndIf
 	If Not checkInGame() Then ;; pas in game
 		If Not checkLobbyStart() Then ;; pas dans le lobby (ou on peut choisir la quest / démarrer etc
 			If Not checkLoginBtn() Then ;; pas de bouton login : on ne sait pas où on est : on kill le jeu et on relance
-				writeLog("On ne sait pas où on est, on relance le bot")
+				writeLog($msgErrorCantFindBotPosition)
 				killGame()
 				return 1
 			Else
-				writeLog("On est dans le login")
+				writeLog($msgBotInLogin)
 				return 2
 			EndIf
 		Else
-			writeLog("On est dans le lobby")
+			writeLog($msgBotInLobby)
 			Return 3
 		EndIf
 	Else
-		writeLog("On est in game !")
+		writeLog($msgBotInGame)
 		Return 4
 	EndIf
 EndFunc
