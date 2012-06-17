@@ -27,7 +27,6 @@ EndIf
 ;; configs 
 AutoItSetOption("MouseCoordMode",2)
 AutoItSetOption("PixelCoordMode",2)    
-AutoItSetOption("MustDeclareVars", 1)  
 AutoItSetOption("GUIOnEventMode",1)
 
 ;; include des lib AutoIt
@@ -44,11 +43,11 @@ AutoItSetOption("GUIOnEventMode",1)
 
 ;; include des fichier du bot
 #include "au3udf/ImageSearch.au3"
+#include "libs/botLogMsg.au3"
 #include "libs/variables.au3"
 #include "botConfig.au3"
 #include "libs/configsParsing.au3"
 #include "libs/botStats.au3"
-#include "libs/botLogMsg.au3"
 #include "libs/gameFunctions/gameChecks.au3"
 #include "libs/gameFunctions/outGameFunction.au3"
 #include "libs/gameFunctions/inGameFunction.au3"
@@ -60,16 +59,15 @@ HotKeySet("{DEL}","stopBot")
 
 #region ### Control GUI
 $handlerGUI = GUICreate($baseTitle & " - Stopped", 408, 380, 50, 50)
-$Group1 = GUICtrlCreateGroup("LaunchPad", 8, 8, 105, 113)
+Local $Group1 = GUICtrlCreateGroup("LaunchPad", 8, 8, 105, 113)
 $gStart = GUICtrlCreateButton("Start", 16, 24, 89, 25)
 $gStop = GUICtrlCreateButton("Stop / Exit", 16, 56, 89, 25)
 $gEdit = GUICtrlCreateButton("Edit Config", 16, 88, 89, 25)
-GUICtrlCreateGroup("", -99, -99, 1, 1)
-$Group2 = GUICtrlCreateGroup("Stats", 120, 8, 281, 113)
-$Label1 = GUICtrlCreateLabel("Heure de début", 128, 24, 78, 17)
-$Label2 = GUICtrlCreateLabel("Temps écoulé", 128, 48, 71, 17)
-$Label3 = GUICtrlCreateLabel("Nombre de runs", 128, 72, 79, 17)
-$Label4 = GUICtrlCreateLabel("Temps moyen par run", 128, 96, 106, 17)
+Local $Group2 = GUICtrlCreateGroup("Stats", 120, 8, 281, 113)
+Local $Label1 = GUICtrlCreateLabel("Heure de début", 128, 24, 78, 17)
+Local $Label2 = GUICtrlCreateLabel("Temps écoulé", 128, 48, 71, 17)
+Local $Label3 = GUICtrlCreateLabel("Nombre de runs", 128, 72, 79, 17)
+Local $Label4 = GUICtrlCreateLabel("Temps moyen par run", 128, 96, 106, 17)
 $gHStart = GUICtrlCreateInput("", 248, 22, 145, 21)
 GUICtrlSetState(-1, $GUI_DISABLE)
 $gHEcoule = GUICtrlCreateInput("", 248, 45, 145, 21)
@@ -78,9 +76,8 @@ $gNbRun = GUICtrlCreateInput("", 248, 68, 145, 21)
 GUICtrlSetState(-1, $GUI_DISABLE)
 $gAvgRunTime = GUICtrlCreateInput("", 248, 91, 145, 21)
 GUICtrlSetState(-1, $GUI_DISABLE)
-GUICtrlCreateGroup("", -99, -99, 1, 1)
 $gLogs = GUICtrlCreateEdit("", 8, 128, 393, 225)
-$Credits = GUICtrlCreateLabel("Diablo III @ GMSTemple.com", 8, 360, 255, 17)
+Local $Credits = GUICtrlCreateLabel("Diablo III @ GMSTemple.com", 8, 360, 255, 17)
 #EndRegion
 
 #region ### GUI Event ControlClick
@@ -139,6 +136,8 @@ Func startBot()
 			startBotTime()
 		EndIf
 		$restartDiablo = 0
+		;; on met le bon status au bot pour empêcher un double lancement
+		$botStatus = 1
 		
 		WinSetTitle($handlerGUI,"",$baseTitle&" - Started")		
 		
@@ -151,13 +150,12 @@ Func startBot()
 			EndIf
 			
 			;; on check les config avant de lancer le bot (pour éviter les erreurs)
-			$configOk = loadConfigs()
+			Local $configOk = loadConfigs()
 			If $configOk == 1 Then
+				$botStatus = 0
 				return
 			EndIf
 			
-			;; on met le bon status au bot pour empêcher un double lancement
-			$botStatus = 1
 			
 			;; et on démarre ! :D
 			writeLog($msgStartBot)
@@ -166,8 +164,9 @@ Func startBot()
 			GUISetState(@SW_MINIMIZE,$handlerGUI)
 			
 			;; on lance le jeu !
+			writeLog($msgStartClient)
 			Run($gamePath &" -launch")
-			$error = waitForGameStart()
+			Local $error = waitForGameStart()
 			
 			If $error Then
 				writeLog($msgErrorClientNotStarted)
@@ -205,9 +204,9 @@ EndFunc
 
 Func doRun()
 	while 1
-		$error = waitForLobby()
+		Local $error = waitForLobby()
 		If $error Then
-			$action = CheckStateAction()
+			Local $action = CheckStateAction()
 			If $action == 1 Then
 				ExitLoop
 			ElseIf $action == 2 then
@@ -217,9 +216,9 @@ Func doRun()
 		
 		selectQuest()
 		
-		$error = waitForLobby()
+		Local $error = waitForLobby()
 		If $error Then
-			$action = CheckStateAction()
+			Local $action = CheckStateAction()
 			If $action == 1 Then
 				ExitLoop
 			ElseIf $action == 2 then
@@ -227,9 +226,9 @@ Func doRun()
 			EndIf
 		EndIf
 		
-		$error = startGame()	;; on démarre la game
+		Local $error = startGame()	;; on démarre la game
 		If $error Then
-			$action = CheckStateAction()
+			Local $action = CheckStateAction()
 			If $action == 1 Then
 				ExitLoop
 			ElseIf $action == 2 then
@@ -242,12 +241,12 @@ Func doRun()
 EndFunc
 
 Func CheckStateAction()
-	$state = checkGameState()
+	Local $state = checkGameState()
 	If $state == 1 Then
 		$restartDiablo=1 ;; restart
 		return 1
 	ElseIf $state == 2 Then
-		$error = login()
+		Local $error = login()
 		If $error Then
 			writeLog($msgErrorCannotConnect)
 			killGame()
@@ -295,7 +294,7 @@ Func checkGameState()
 EndFunc
 	
 Func killGame()
-	$pid = ProcessExists("Diablo III.exe")
+	Local $pid = ProcessExists("Diablo III.exe")
 	If $pid Then
 		ProcessClose($pid)
 	EndIf	

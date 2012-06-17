@@ -74,47 +74,47 @@ Func loadConfigs()
 	
 	;; vérification des configs
 	If Not FileExists($gamePath) Then
-		MsgBox(4096,"Erreur de configuration","Le chemin de l'executable diablo n'est pas configuré. Merci de modifier le fichier configs.ini")
+		MsgBox(4096,$msgErrorWrongConfigTitle,$msgErrorWrongGamePath)
 		$error=1
 	EndIf
 	If Not FileExists($prefPath) Then
-		MsgBox(4096,"Erreur de configuration","Le chemin du fichier de config Diablo III n'est pas configuré. Merci de modifier le fichier configs.ini")
+		MsgBox(4096,$msgErrorWrongConfigTitle,$msgErrorWrongPrefPath)
 		$error=1
 	EndIf
 	If $accountName == "email" Or $accountPass == "pass" Then
-		MsgBox(4096,"Erreur de configuration","Le compte ou le mot de passe n'est pas configuré. Merci de modifier le fichier configs.ini")
+		MsgBox(4096,$msgErrorWrongConfigTitle,$msgErrorWrongIdent)
 		$error=1
 	EndIf
 	If $difficulty == 0 Then
-		MsgBox(4096,"Erreur de configuration","La difficulté pour les runs n'est pas configuré. Merci de modifier le fichier configs.ini")
+		MsgBox(4096,$msgErrorWrongConfigTitle,$msgErrorWrongDifficulty)
 		$error=1
 	EndIf
 	If $character == 0 Then
-		MsgBox(4096,"Erreur de configuration","Le personnage a utilisé n'est pas configuré. Merci de modifier le fichier configs.ini")
+		MsgBox(4096,$msgErrorWrongConfigTitle,$msgErrorWrongChar)
 		$error=1
 	EndIf
 	If $line0 == 0 Or $line0[0] <> 10 Then
-		MsgBox(4096,"Erreur de configuration","La ligne 0 de votre inventaire ne comporte pas 10 chiffre ou n'est pas configuré. Merci de modifier le fichier configs.ini")
+		MsgBox(4096,$msgErrorWrongConfigTitle,$msgErrorWrongInvLine0)
 		$error=1
 	EndIf
 	If $line1 == 0 Or $line1[0] <> 10 Then
-		MsgBox(4096,"Erreur de configuration","La ligne 1 de votre inventaire ne comporte pas 10 chiffre ou n'est pas configuré. Merci de modifier le fichier configs.ini")
+		MsgBox(4096,$msgErrorWrongConfigTitle,$msgErrorWrongInvLine1)
 		$error=1
 	EndIf
 	If $line2 == 0 Or $line2[0] <> 10 Then
-		MsgBox(4096,"Erreur de configuration","La ligne 2 de votre inventaire ne comporte pas 10 chiffre ou n'est pas configuré. Merci de modifier le fichier configs.ini")
+		MsgBox(4096,$msgErrorWrongConfigTitle,$msgErrorWrongInvLine2)
 		$error=1
 	EndIf
 	If $line3 == 0 Or $line3[0] <> 10 Then
-		MsgBox(4096,"Erreur de configuration","La ligne 3 de votre inventaire ne comporte pas 10 chiffre ou n'est pas configuré. Merci de modifier le fichier configs.ini")
+		MsgBox(4096,$msgErrorWrongConfigTitle,$msgErrorWrongInvLine3)
 		$error=1
 	EndIf
 	If $line4 == 0 Or $line4[0] <> 10 Then
-		MsgBox(4096,"Erreur de configuration","La ligne 4 de votre inventaire ne comporte pas 10 chiffre ou n'est pas configuré. Merci de modifier le fichier configs.ini")
+		MsgBox(4096,$msgErrorWrongConfigTitle,$msgErrorWrongInvLine4)
 		$error=1
 	EndIf
 	If $line5 == 0 Or $line5[0] <> 10 Then
-		MsgBox(4096,"Erreur de configuration","La ligne 5 de votre inventaire ne comporte pas 10 chiffre ou n'est pas configuré. Merci de modifier le fichier configs.ini")
+		MsgBox(4096,$msgErrorWrongConfigTitle,$msgErrorWrongInvLine5)
 		$error=1
 	EndIf
 	

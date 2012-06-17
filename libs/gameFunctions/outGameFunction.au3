@@ -14,17 +14,14 @@
 
 
 Func waitForGameStart()
-	$pid = ProcessWait("Diablo III.exe",30)
+	Local $pid = ProcessWait("Diablo III.exe",30)
 	If $pid <> 0 Then
-		;writeLog('Debug: process OK')
 		;; on attend que la windows diabloIII apparaisse
-		$w = WinWait("[CLASS:D3 Main Window Class]")
+		WinWait("[CLASS:D3 Main Window Class]")
 
-		$maxLoop = 0 ;; 2min
+		Local $maxLoop = 0 ;; 2min
 		
 		While Not checkLoginBtn() And $maxLoop <= $gameStart
-			;writeLog('Debug: Loop.. '&$maxLoop)
-			;writeLog("Debug: "&$connexionBtn&" = " &$connexionBtnRedHover& " = " &$connexionBtnRed& " == " &PixelChecksum(490,767,775,790))
 			WinActivate($winName)
 			sleep(1000)
 			$maxLoop += 1
@@ -41,8 +38,10 @@ EndFunc
 
 
 Func login()
-	writeLog("Identification à battle.net")
-	MouseClick("left",673,544,1,5)
+	writeLog($msgIdentToBNet)
+	
+	;; on click sur le champs du compte pour le supprimer
+	MouseClick("left",441,326,1,5)
 	sleep(100)
 	send("^{a}")
 	sleep(200)
@@ -53,12 +52,12 @@ Func login()
 	send("{TAB}")
 	sleep(200)
 	
-	$btnMaxAttempted=0
+	Local $btnMaxAttempted=0
 	While checkLoginBtn() And checkGameStatus()
 		
 		;; si on ne trouve plus el bouton connexion (et qu'on est pas entré dans le connect)
 		;; on quitte la fonction et on renvoie 1 (error)
-		writeLog("Tentative de connexion")
+		writeLog($msgConnectionTry)
 		if $btnMaxAttempted >= 100 Then
 			return 1
 		EndIf
@@ -90,7 +89,7 @@ Func login()
 		WEnd
 		sleep(1000)
 		If _DateDiff("s", $startTry, _NowCalc()) < 120 Then
-			WriteLog("Connecté à battle.net !")
+			WriteLog($msgConnected)
 			Return 0
 		EndIf
 		
@@ -116,48 +115,58 @@ Func waitForLobby()
 EndFunc
 
 Func selectQuest()
-	writeLog("Sélection de la quest")
-	MouseClick("left",213,440)
+	writeLog($msgQuestSelect)
+	
+	;; on ouvre la selection de quest
+	MouseClick("left",128,268)
 	sleep(500)
+	;; on choisit la difficulté si c'est pas encore fait
 	If $selectDiff == 0 Then
-		MouseClick("left",473,783)
+		MouseClick("left",301,477)
 		sleep(200)
-		$diffClickTop=$lvlTop+$lvlHeight*(1/2+$difficulty-1)
+		Local $diffClickTop=$lvlTop+$lvlHeight*(1/2+$difficulty-1)
 		MouseClick("left",$lvlLeft,$diffClickTop)
 		sleep(200)
 		$selectDiff=1
 	EndIf
-	MouseClick("left",501,259,15)
+	;; on monte en haut de la barre de défilement
+	MouseClick("left",323,160,20)
 	sleep(200)
-	MouseClick("left",250,287)
+	;; et on prend la premiere quest
+	MouseClick("left",179,173) 
 	sleep(200)
-	MouseClick("left",501,679,15)
+	;; on descend tout en bas
+	MouseClick("left",321,413,20)
 	sleep(200)
-	MouseClick("left",250,530)
+	;; et on choisit la bonne quest
+	MouseClick("left",171,319)
 	sleep(200)
-	MouseClick("left",852,784)
+	;; on valide la quest
+	MouseClick("left",529,480)
 	sleep(1000)
-	MouseClick("left", 527,572)
+	;; et on ferme la popup
+	MouseClick("left",337,349)
 	sleep(500)
 EndFunc
 
 
 Func selectChar()
-	writeLog("Sélection du personnage")
-	MouseClick("left",623,876)
+	writeLog($msgCharSelect)
+	MouseClick("left",395,531)
 	sleep(500)
-	$charPosition=$charTop+$charHeight/2+($charHeight+$charSpace)*($character-1)
+	Local $charPosition=$charTop+$charHeight/2+($charHeight+$charSpace)*($character-1)
 	MouseClick("left",$charLeft,$charPosition)
 	sleep(500)
-	MouseClick("left",627,873)
+	MouseClick("left",394,530)
 EndFunc
 
 
 Func startGame()
-	writeLog("Démarrage du run")
+	writeLog($msgStartRun)
 	startRunStat()
 	updateStats()
-	MouseClick("left",150,380)
+	;; on click sur commencer / jouer
+	MouseClick("left",132,226)
 	sleep(200)
 	Return loadGame()
 EndFunc
@@ -166,12 +175,12 @@ Func stopGame()
 	leaveGame()
 	endRunStat()
 	updateStats() 
-	writeLog("Fin de la game après "& _FormatElapsedTime($runTimeList[$nbRun]))
+	writeLog($msgEndRun & _FormatElapsedTime($runTimeList[$nbRun]))
 EndFunc
 
 Func leaveChannel()
-	MouseClick("left",46,789)
+	MouseClick("left",29,480)
 	sleep(500)
-	MouseClick("left",147,865)
+	MouseClick("left",78,525)
 	sleep(500)
 EndFunc

@@ -38,16 +38,18 @@ Func checkLobbyStart()
 EndFunc
 
 Func act3CheckQuestDone()
-	return _Imagesearch($gameQuestDone,1,$imgSearchX,$imgSearchY,$imgSearchTolerance)
+	Return checkPixel($questDonePopup,30,5)
+	;return _Imagesearch($gameQuestDone,1,$imgSearchX,$imgSearchY,$imgSearchTolerance)
 EndFunc
 
 Func isDead()
-	$btn 	= _Imagesearch($gameResBtn,1,$imgSearchX,$imgSearchY,$imgSearchTolerance)
-	$btn2	= _Imagesearch($gameResBtnRed,1,$imgSearchX,$imgSearchY,$imgSearchTolerance)
-	return $btn Or $btn2
+	;Local $btn 	= _Imagesearch($gameResBtn,1,$imgSearchX,$imgSearchY,$imgSearchTolerance)
+	;Local $btn2	= _Imagesearch($gameResBtnRed,1,$imgSearchX,$imgSearchY,$imgSearchTolerance)
+	;return $btn Or $btn2
+	return 0
 EndFunc
 
 Func checkInGame()
-	Return checkPixel($tpIcon,2,2,2)
+	Return checkPixel($tpIcon)
 	;return _Imagesearch($gameTpIcon,1,$imgSearchX,$imgSearchY,$imgSearchTolerance)
 EndFunc

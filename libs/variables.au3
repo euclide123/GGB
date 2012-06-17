@@ -25,27 +25,26 @@ Global $gLogs
 ;; stats variable
 Global $startTime				;; dateheure de lancement du bot
 Global $startTimeCalc			;; dateheure pour calcul de durée
-Global $runStartTime			;; dateheure du dÃ©but du run
 Global $runStartTimeCalc		;; dateheure du dÃ©but du run pour calcum
 Global $nbRun = 0				;; nombre de runs
 Global $runTimeList[99999]		;; list des temps de chaques runs pour calculer la moyenne
 
 ;; position de l'inventaire
-Global $invTop=536
-Global $invLeft=800
-Global $invCaseWidth=44
-Global $invCaseHeight=44
+Global $invTop=326
+Global $invLeft=518
+Global $invCaseWidth=26
+Global $invCaseHeight=26
 
 ;; position des fenetre de char
-Global $charTop=182
-Global $charLeft=216
-Global $charHeight=80
-Global $charSpace=3
+Global $charTop=111
+Global $charLeft=131
+Global $charHeight=48
+Global $charSpace=1
 
 ;; position du menu de choix difficulté
-Global $lvlTop=808
-Global $lvlLeft=259
-Global $lvlHeight=28
+Global $lvlTop=492
+Global $lvlLeft=182
+Global $lvlHeight=17
 
 ;; type des personnages :
 Global $TYPE_SORC	= 1
@@ -92,17 +91,19 @@ Global $gameResBtn			= 'img/game_res_btn.bmp'
 Global $gameResBtnRed		= 'img/game_res_btn_red.bmp'
 
 ;; PixelGetColor				= [x,y,color]
-Global $repairNotification[3]  	= [894,35, 0xFFF000]
-Global $loginWindow[3]			= [981,929,0xE7E4E7]
-Global $loginPopupConnect[3]	= [462,423,0x39F300]
-Global $loginPopupVerif[3]		= [462,487,0x3AF200]
-Global $loginPopupRecup[3]		= [462,551,0x3FEE00]
+Global $loginWindow[3]			= [336,474,0x0C0504]
 
-Global $lobbyStart[3]			= [320,382,0x280400]
-Global $lobbyStartHover[3]		= [320,382,0x2F0400]
-Global $lobbyPlay[3]			= [320,382,0x280400]
-Global $lobbyPlayHover[3]		= [320,382,0x2F0400]
+Global $loginPopupConnect[3]	= [296,256,0x42EB00]
+Global $loginPopupVerif[3]		= [296,296,0x3AF200]
+Global $loginPopupRecup[3]		= [296,335,0x42EB00]
 
-Global $tpIcon[3]				= [777,940,0x1A2A65]
+Global $lobbyStart[3]			= [56,230,0x190400]
+Global $lobbyStartHover[3]		= [56,230,0x1F0400]
+Global $lobbyPlay[3]			= [56,230,0x190400]
+Global $lobbyPlayHover[3]		= [56,230,0x1F0400]
+
+Global $repairNotification[3]  	= [894,35,0xFFF000]
+Global $tpIcon[3]				= [488,572,0x1B2B66]
+Global $questDonePopup[3]		= [470,427,0xF09900]
 
 

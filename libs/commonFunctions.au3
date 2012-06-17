@@ -40,7 +40,7 @@ EndFunc
 ;; @param $tolerance 	la tolérance pour la recherche
 ;; @return 1 si trouvé, 0 sinon
 ;; ---
-Func checkPixel($pixelArray, $precisionX=0, $precisionY=0, $tolerance=2)
+Func checkPixel($pixelArray, $precisionX=2, $precisionY=2, $tolerance=5)
 	Local $pos = PixelSearch($pixelArray[0]-$precisionX,$pixelArray[1]-$precisionX,$pixelArray[0]+$precisionX,$pixelArray[1]+$precisionY,$pixelArray[2],$tolerance)
 	If @error Then
 		return 0
@@ -53,7 +53,7 @@ EndFunc
 ;; 			que la fenetre existe
 ;;			et on l'active
 Func checkGameStatus()
-	$pid = ProcessExists("Diablo III.exe")
+	Local $pid = ProcessExists("Diablo III.exe")
 	If $pid <> 0 Then
 		If WinExists($winName) Then
 			;; on l'active au cas où

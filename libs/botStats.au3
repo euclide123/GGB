@@ -11,7 +11,6 @@ EndFunc
 ;;	Initialise la date de lancement du run
 ;;--
 Func startRunStat()
-	$runStartTime = @MDAY & "/" & @MON & "/" & @YEAR & " " & @HOUR & ":" & @MIN & ":" & @SEC
 	$runStartTimeCalc = _NowCalc()
 EndFunc	
 
@@ -46,14 +45,14 @@ EndFunc
 ;;	Met a jour les stats du bot et refresh le GUI
 ;;--
 Func updateStats() 
-	$tempsEcoule = _DateDiff("s", $startTimeCalc, _NowCalc())
-	$hEcoule = _FormatElapsedTime($tempsEcoule)
+	Local $tempsEcoule = _DateDiff("s", $startTimeCalc, _NowCalc())
+	Local $hEcoule = _FormatElapsedTime($tempsEcoule)
 	
 	GUICtrlSetData($gHStart		, $startTime)
 	GUICtrlSetData($gHEcoule	, $hEcoule) ;; timenow - starttime
 	GUICtrlSetData($gNbRun		, $nbRun)
 	
-	$avgRunTime=0
+	Local $avgRunTime=0
 	;; calcul du temps moyen
 	If $nbRun > 0 Then
 	
@@ -72,7 +71,7 @@ EndFunc
 ;;	Ecrit le contenu de la log et les stats du bot dans un fichier
 ;;--
 Func saveLogs()
-	$file = FileOpen("logs/botlogs.log",1)
+	Local $file = FileOpen("logs/botlogs.log",1)
 	FileWriteLine($file,"")
 	FileWriteLine($file,"")
 	FileWriteLine($file,"---------------------------------------------------------")
@@ -122,10 +121,10 @@ EndFunc   ;==>FormatElapsedTime
 ;;	@return String le temps formaté
 ;;--
 Func GetDays()
-  $Days = Int($Input / 86400)
-  $Input -= ($Days * 86400)
-  $ElapsedMessage &= $Days & ' j, '
-  Return $ElapsedMessage
+	$Days = Int($Input / 86400)
+    $Input -= ($Days * 86400)
+	$ElapsedMessage &= $Days & ' j, '
+	Return $ElapsedMessage
 EndFunc   ;==>GetDays
 
 ;;--
@@ -134,10 +133,10 @@ EndFunc   ;==>GetDays
 ;;	@return String le temps formaté
 ;;--
 Func GetHours()
-  $Hours = Int($Input / 3600)
-  $Input -= ($Hours * 3600)
-  $ElapsedMessage &= $Hours & ' h, '
-  Return $ElapsedMessage
+	  $Hours = Int($Input / 3600)
+	  $Input -= ($Hours * 3600)
+	  $ElapsedMessage &= $Hours & ' h, '
+	  Return $ElapsedMessage
 EndFunc   ;==>GetHours
 
 ;;--
@@ -146,10 +145,10 @@ EndFunc   ;==>GetHours
 ;;	@return String le temps formaté
 ;;--
 Func GetMinutes()
-  $Minutes = Int($Input / 60)
-  $Input -= ($Minutes * 60)
-  $ElapsedMessage &= $Minutes & ' min, '
-  Return $ElapsedMessage
+	$Minutes = Int($Input / 60)
+	$Input -= ($Minutes * 60)
+	$ElapsedMessage &= $Minutes & ' min, '
+	Return $ElapsedMessage
 EndFunc   ;==>GetMinutes
 
 ;;--
@@ -158,6 +157,6 @@ EndFunc   ;==>GetMinutes
 ;;	@return String le temps formaté
 ;;--
 Func GetSeconds()
-  $ElapsedMessage &= Int($Input) & ' s.'
-  Return $ElapsedMessage
+	$ElapsedMessage &= Int($Input) & ' s.'
+	Return $ElapsedMessage
 EndFunc   ;==>GetSeconds

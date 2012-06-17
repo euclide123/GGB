@@ -10,9 +10,9 @@
 
 #ce ----------------------------------------------------------------------------
 Func loadGame()
-	$error = waitInGame()
+	Local $error = waitInGame()
 	If $error Then
-		writeLog("Echec de création de la partie")
+		writeLog($msgErrorCreateGameFail)
 		Return 1
 	EndIf
 	sleep(1000)
@@ -28,9 +28,9 @@ Func loadGame()
 		Case $TYPE_BARB
 			loadSequenceBarb()
 		Case $TYPE_DH
-			writeLog('Pas de sequence pour le type de character : DH')
+			writeLog($msgErrorNoSequenceFound &" DH")
 		Case $TYPE_WD
-			writeLog('Pas de sequence pour le type de character : WD')
+			writeLog($msgErrorNoSequenceFound &" WD")
 	EndSwitch
 	
 	If $sequenceError Then
@@ -85,17 +85,17 @@ Func loadSequenceBarb()
 		send("{2}")
 	WEnd
 	If isDead() Then
-		writeLog("Mort")
+		writeLog($msgErrorDeath)
 		$sequenceError = 1
 		Return 1
 	EndIf
 	If getGameLength() >= $gameMaxLength Then
-		writeLog("Game Timeout")
+		writeLog($msgErrorGameTimeout)
 		$sequenceError = 1
 		Return 1
 	EndIf
 	If Not checkGameStatus() Or Not checkInGame() Then
-		writeLog("On n'est plus dans la game")
+		writeLog($msgErrorNotInGame)
 		$sequenceError = 1
 		Return 1
 	EndIf
@@ -144,7 +144,7 @@ Func loadSequenceMonk()
 	; on peut modifier le nombre de coup avant de lancer sérénité
 	$serenite=0
 
-	$h = WinGetHandle("Diablo III")
+	Local $h = WinGetHandle("Diablo III")
 
 	;sérénité sert aussi de sortie de secour de la boucle while au cas ou il y ai un probleme avec les checksum
 	while (not act3CheckQuestDone()) And (Not isDead()) And (getGameLength() <= $gameMaxLength) And checkGameStatus() And checkInGame()
@@ -162,17 +162,17 @@ Func loadSequenceMonk()
 		$serenite = $serenite + 1
 	WEnd
 	If isDead() Then
-		writeLog("Mort")
+		writeLog($msgErrorDeath)
 		$sequenceError = 1
-		return 1
+		Return 1
 	EndIf
 	If getGameLength() >= $gameMaxLength Then
-		writeLog("Game Timeout")
+		writeLog($msgErrorGameTimeout)
 		$sequenceError = 1
 		Return 1
 	EndIf
 	If Not checkGameStatus() Or Not checkInGame() Then
-		writeLog("On n'est plus dans la game")
+		writeLog($msgErrorNotInGame)
 		$sequenceError = 1
 		Return 1
 	EndIf
@@ -210,45 +210,46 @@ Func loadSequenceSoSo()
 	
 	skipCinematic()
 	sleep(500)
-	MouseClick("left",913, 46)
+	MouseClick("left",557,71)
 	sleep(3000)
 	send("{1}")
 	sleep(500)
 	while (not act3CheckQuestDone()) And (Not isDead()) And (getGameLength() <= $gameMaxLength) And checkGameStatus() And checkInGame()
-		MouseMove(700,702)
+		MouseMove(429,358)
 		MouseDown("right")
 	WEnd
 	MouseUp("right")
+	
 	If isDead() Then
-		writeLog("Mort")
+		writeLog($msgErrorDeath)
 		$sequenceError = 1
 		Return 1
 	EndIf
 	If getGameLength() >= $gameMaxLength Then
-		writeLog("Game Timeout")
+		writeLog($msgErrorGameTimeout)
 		$sequenceError = 1
 		Return 1
 	EndIf
 	If Not checkGameStatus() Or Not checkInGame() Then
-		writeLog("On n'est plus dans la game")
+		writeLog($msgErrorNotInGame)
 		$sequenceError = 1
 		Return 1
 	EndIf
 	sleep(500)
-	MouseClick("left",844,574)
+	;MouseClick("left",844,574)
 	send("{SPACE}")
 	Sleep(800)
 	send("{SPACE}")
-	MouseClick("left",430,582)
+	;MouseClick("left",430,582)
 	Sleep(800)
 	send("{SPACE}")
-	MouseClick("left",460,330)
+	;MouseClick("left",460,330)
 	Sleep(800)
 	send("{SPACE}")
-	MouseClick("left",804,290)
+	;MouseClick("left",804,290)
 	Sleep(800)
 	send("{SPACE}")
-	MouseClick("left",628,786)
+	;MouseClick("left",628,786)
 	sleep(200)
 	send("{SPACE}")
 	pickit()
@@ -256,13 +257,13 @@ EndFunc
 
 Func act3moveToTyraelIskatu()
 
-	mouseClick("left",1250, 712)
+	mouseClick("left",794,465)
 	sleep(2000)
-	mouseClick("left",6, 144)
+	mouseClick("left",3,104)
 	sleep(3800)
-	mouseClick("left",9, 146)
-	sleep(4000)
-	mouseClick("left",56, 128)
+	mouseClick("left",14,71)
+	sleep(4500)
+	mouseClick("left",71,80)
 	sleep(3500)
 	send("{SPACE}")
 	sleep(500)
@@ -273,68 +274,39 @@ Func act3moveToTyraelIskatu()
 	send("{SPACE}")
 	sleep(500)
 	
-	$findTyrael=0
-	while $findTyrael <= $findNpcTimeout And checkGameStatus() And checkInGame()
-		$pos = PixelSearch(500,0,1250,500,0xD38B02,2)
-		If not @error Then
-			MouseClick("left",$pos[0],$pos[1]+80)
-			sleep(1000)
-			send("{SPACE}")
-			sleep(500)
-			send("{SPACE}")
-			sleep(500)
-			send("{SPACE}")
-			sleep(500)
-			send("{SPACE}")
-			sleep(500)
-			send("{SPACE}")
-			sleep(500)
-			ExitLoop
-		EndIf
-		sleep(100)
-		$findTyrael += 1
-	WEnd
+	;; on parle a tyra
+	MouseClick("left",473,198)
+	sleep(1000)
+	send("{SPACE}")
+	sleep(500)
+	send("{SPACE}")
+	sleep(500)
+	send("{SPACE}")
+	sleep(500)
+	send("{SPACE}")
+	sleep(500)
+	send("{SPACE}")
+	sleep(500)
 	
-	If $findTyrael >= $findNpcTimeout Then
-		writeLog("Impossible de trouver Tyrael")
-		$sequenceError = 1
-		return 1
-	EndIf
-	
-	$findPortal=0
-	while $findPortal <= $findNpcTimeout And checkGameStatus() And checkInGame()
-		$pos = PixelSearch(0,0,700,500,0x286465,2)
-		If not @error Then
-			MouseClick("left",$pos[0],$pos[1])
-			ExitLoop
-			sleep(5000)
-		EndIf
-		sleep(100)
-		$findPortal += 1
-	WEnd
-	
-	If $findPortal >= $findNpcTimeout Then
-		writeLog("Impossible de trouver le portail d'Iskatu")
-		$sequenceError = 1
-		return 1
-	EndIf
-	sleep(4000)
+	;; on rentre dans le portail
+	MouseClick("left",128,55)
+	sleep(9000)
 EndFunc
 
 func skipCinematic()
-	$maxLoop = 0
-	while ("000000" <> hex(PixelGetColor (517,37),6)) And $maxLoop <= $cinmaticTimeout And checkGameStatus() And checkInGame()
+	Local $maxLoop = 0
+	while ("000000" <> hex(PixelGetColor (385,33),6)) And $maxLoop <= $cinmaticTimeout And checkGameStatus() And checkInGame()
 		Sleep(100)
 		$maxLoop += 1
 	WEnd
 	Send("{Escape}")
 	Sleep(450)
-	MouseClick("left", 530,340)
+	MouseClick("left",338,208)
 	Sleep(2500)
 EndFunc
 
 Func waitInGame()
-	$maxLoop=0
+	Local $maxLoop=0
 	while Not checkInGame() And $maxLoop <= $waitInGameTimeout And checkGameStatus()
 		sleep(100)
 		$maxLoop += 1
@@ -349,13 +321,13 @@ EndFunc
 Func pickit()
 	send("{ALT}")
 	sleep(500)
-	$pickitStart=_NowCalc()
+	Local $pickitStart=_NowCalc()
 
 	while $pickSet And checkGameStatus() And checkInGame() And (_DateDiff("s", $pickitStart, _NowCalc()) <= $pickitTimeout)	;; sets
 		send("{ALT}")
 		sleep(100)
 		;$itemPos= PixelSearch(20,20,1252,826,0x01EF00,3)
-		$itemPos= PixelSearch(150,150,1252,826,0x00FF00,1)
+		Local $itemPos= PixelSearch(150,150,1252,826,0x00FF00,1)
 		If Not @error Then
 			MouseClick("left",$itemPos[0],$itemPos[1],1,1)
 			sleep(1000)
@@ -367,7 +339,7 @@ Func pickit()
 		send("{ALT}")
 		sleep(100)
 		;$itemPos= PixelSearch(20,20,1252,826,0xB35F2E,3)
-		$itemPos= PixelSearch(150,150,1252,826,0xBF642F,1)
+		Local $itemPos= PixelSearch(150,150,1252,826,0xBF642F,1)
 		If Not @error Then
 			MouseClick("left",$itemPos[0],$itemPos[1],1,1)
 			sleep(1000)
@@ -378,7 +350,7 @@ Func pickit()
 	while $pickRare And checkGameStatus() And checkInGame() And (_DateDiff("s", $pickitStart, _NowCalc()) <= $pickitTimeout) ;; rare
 		send("{ALT}")
 		sleep(100)
-		$itemPos= PixelSearch(150,150,1252,826,0xFFFF00,1)
+		Local $itemPos= PixelSearch(150,150,1252,826,0xFFFF00,1)
 		If Not @error Then
 			MouseClick("left",$itemPos[0],$itemPos[1],1,1)
 			sleep(1000)
@@ -390,7 +362,7 @@ Func pickit()
 		send("{ALT}")
 		sleep(100)
 		;$itemPos= PixelSearch(20,20,1252,826,0x6969FF,3) 
-		$itemPos= PixelSearch(150,150,1252,826,0x6464EF,1)
+		Local $itemPos= PixelSearch(150,150,1252,826,0x6464EF,1)
 		If Not @error Then
 			MouseClick("left",$itemPos[0],$itemPos[1],1,1)
 			sleep(1000)
@@ -402,7 +374,7 @@ EndFunc
 
 Func act3sellRepair()
 	If Not checkGameStatus() Or Not checkInGame() Then
-		writeLog("On n'est plus dans la game")
+		writeLog($msgErrorNotInGame)
 		$sequenceError = 1
 		Return 1
 	EndIf
@@ -410,17 +382,17 @@ Func act3sellRepair()
 	;; on retourne en ville
 	Send("t")
 	$botInTown=1
-	Sleep(7500)
+	Sleep(8500)
 	;; on va au npc en haut a droite qui vend les potions
-	MouseClick("left",886,259)
+	MouseClick("left",567,148)
 	sleep(1500)
-	MouseClick("left",1184,798)
+	MouseClick("left",789,511)
 	Sleep(2000)
-	MouseClick("left",1232,652)
+	MouseClick("left",730,366)
 	Sleep(2000)
-	MouseClick("left",1035,499)
+	MouseClick("left",640,337)
 	Sleep(1500)
-	MouseClick("left",715,302)
+	MouseClick("left",428,173)
 	Sleep(1500)
 	repair()
 	sleep(500)
@@ -431,14 +403,14 @@ Func act3sellRepair()
 EndFunc
 
 Func repair()
-	MouseClick("left",465,324)
+	MouseClick("left",280,198)
 	sleep(500)
-	MouseClick("left",234,536)
+	MouseClick("left",143,327)
 	sleep(500)
 EndFunc
 
 Func sellItems()
-	MouseClick("left",455,204)
+	MouseClick("left",282,126)
 	sleep(500)
 	
 	For $i = 0 To 5
@@ -466,6 +438,6 @@ Func leaveGame()
 	EndIf
 	Send("{Escape}")
 	sleep(500)
-	MouseClick("left",626,524)
+	MouseClick("left",394,320)
 	return 0
 EndFunc
