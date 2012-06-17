@@ -33,12 +33,12 @@ mouseClick("left",691, 172)
 	$cellarOpen=0
 	while $cellarOpen <= $findCellarTimeOut And checkGameStatus() And checkInGame()
 		$pos = PixelSearch(1012,21,1015,25,0x03070A,2)
-		If not @error Then
-		;rien a faire
-			send("{SPACE}")
-	
-		Else
-		leaveGame()
+		If @error Then
+	Send("{Escape}")
+	sleep(500)
+	MouseClick("left",626,524)
+	return 0
+	Else
 			ExitLoop
 		EndIf
 		sleep(100)
