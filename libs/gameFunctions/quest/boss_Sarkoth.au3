@@ -23,6 +23,11 @@ mouseClick("left",202, 419)
 	sleep(1300)
 mouseClick("left",801, 261)
 	sleep(500)
+	If isDead() Then
+		writeLog("Mort")
+		$sequenceError = 1
+		Return 1
+	EndIf
 	;ici on doit check si on est dans le cellar ou non
 	
 	$cellarOpen=0
@@ -46,7 +51,7 @@ mouseClick("left",801, 261)
 	
 	
 	MouseClick("left",40,836)	
-	sleep(3800)	
+	sleep(3000)	
 	MouseClick("left",375,258)
 	sleep(2000)		
 	MouseClick("left",864,175)	
