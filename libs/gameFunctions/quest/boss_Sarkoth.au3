@@ -11,17 +11,17 @@
 ; !!! On part du checkpoint des vielles ruines !!!
 Func act1moveToSarkoth()
 ;ici ajouter fonction buff une fois qu'elle sera créé
-mouseClick("left",238, 232)
+mouseClick("middle",238, 232)
 	sleep(2350)
-	mouseClick("left",21, 374)
+	mouseClick("middle",21, 374)
 	sleep(2550)
-	mouseClick("left",24, 398)
+	mouseClick("middle",24, 398)
 	sleep(2250)
-	mouseClick("left",12, 515)
+	mouseClick("middle",12, 515)
 	sleep(1150)
-mouseClick("left",202, 419)
+mouseClick("middle",202, 419)
 	sleep(1450)
-mouseClick("left",750, 261)
+mouseClick("middle",750, 261)
 	sleep(500)
 	If isDead() Then
 		writeLog("Mort")
