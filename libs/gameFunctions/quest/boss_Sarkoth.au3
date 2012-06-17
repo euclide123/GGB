@@ -77,9 +77,9 @@ mouseClick("left",710, 172)
 		Return 1
 	EndIf
 	sleep(1000)
-	MouseClick("left",352,844)
+	MouseClick("left",255,255)
 	sleep(1000)
-	MouseClick("left",262,592)
+	MouseClick("left",600,200)
 	sleep(1000)
 
 	pickit()
