@@ -211,7 +211,7 @@ Func leaveGame()
 	;; on retourne en ville pour quitter
 	If Not $botInTown Then
 		send("t")
-		sleep(7500)
+		sleep(8500)
 	EndIf
 	Send("{Escape}")
 	sleep(500)
