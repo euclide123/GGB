@@ -22,7 +22,7 @@ mouseClick("middle",238, 150)
 mouseClick("middle",59, 648)
 	sleep(1750)
 mouseClick("left",710, 172)
-	sleep(100)
+	sleep(2000)
 	If isDead() Then
 		writeLog("Mort")
 		$sequenceError = 1
