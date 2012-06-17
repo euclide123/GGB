@@ -21,7 +21,7 @@ mouseClick("middle",238, 232)
 	sleep(1350)
 mouseClick("middle",202, 419)
 	sleep(1550)
-mouseClick("middle",750, 261)
+mouseClick("left",750, 261)
 	sleep(500)
 	If isDead() Then
 		writeLog("Mort")
