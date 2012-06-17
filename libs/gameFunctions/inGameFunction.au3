@@ -165,8 +165,13 @@ Func act1sellRepair()
 
 	;; on retourne en ville
 	Send("t")
-	$botInTown=1
 	Sleep(8900)
+			If isDead() Then
+		writeLog("Mort")
+		$sequenceError = 1
+		Return 1
+	EndIf
+	$botInTown=1
 	;; on va au npc
 	MouseClick("left",1152,341)
 	sleep(2000)
@@ -174,6 +179,12 @@ Func act1sellRepair()
 	Sleep(2000)
 	MouseClick("left",601,210)
 	Sleep(1800)
+			If isDead() Then
+		writeLog("Mort")
+		$sequenceError = 1
+		Return 1
+	EndIf
+	$botInTown=1
 	repair()
 	sleep(500)
 	sellItems()
