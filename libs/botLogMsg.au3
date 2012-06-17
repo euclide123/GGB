@@ -1,12 +1,18 @@
-#cs ----------------------------------------------------------------------------
+;; bot status
+$msgStartBot				= "Démarrage du bot"
+$msgStopBot					= "Arrêt du bot"
 
- AutoIt Version: 3.3.8.1
- Author:         myName
+;; bot position
+$msgBotInLogin				= "On est dans le login"
+$msgBotInLobby				= "On est dans le lobby"
+$msgBotInGame				= "On est in game !"
 
- Script Function:
-	Template AutoIt script.
+;; config Change
+$msgPrefChange				= "Mise en place du fichier de config pour le bot"
+$msgPrefRestore				= "Restauration du fichier de config Diablo III"
 
-#ce ----------------------------------------------------------------------------
-
-; Script Start - Add your code below here
-
+;; errors
+$msgErrorClientNotStarted	= "Client non démarré ou non trouvé."
+$msgErrorCannotConnect		= "Impossible de se connecter. Relance de diablo"
+$msgErrorCantFindBotPosition= "On ne sait pas où on est, on relance le bot"
+$msgErrorGameCrash			= "Jeu planté, on relance"
