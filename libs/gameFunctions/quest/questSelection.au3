@@ -21,13 +21,13 @@ Func startQuest()
 	ElseIf $makequest=122 then
 
 		MouseClick("left",501,259,15)
-		sleep(200)
+		sleep(150)
 		MouseClick("left",239,489)
-		sleep(200)
+		sleep(150)
 		MouseClick("left",250,342)
-		sleep(200)
+		sleep(150)
 		MouseClick("left",237,420)
-		sleep(200)
+		sleep(150)
 		MouseClick("left",852,784)
 		sleep(1000)	
 		
