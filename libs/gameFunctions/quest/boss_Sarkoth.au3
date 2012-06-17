@@ -46,7 +46,7 @@ mouseClick("left",691, 172)
 	If $cellarOpen >= $findCellarTimeOut Then
 		writeLog("la cave n est pas ouverte")
 		$sequenceError = 1
-		return 1
+		leavegame()
 	EndIf
 	
 	
