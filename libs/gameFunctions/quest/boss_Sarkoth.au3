@@ -51,7 +51,7 @@ mouseClick("left",801, 261)
 	sleep(2000)		
 	MouseClick("left",864,175)	
 	sleep(2000)		
-	MouseClick("left",254,566)
+	MouseClick("left",100,500)
 	sleep(1000)
 	
 		attack()
