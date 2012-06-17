@@ -11,18 +11,18 @@
 ; !!! On part du checkpoint des vielles ruines !!!
 Func act1moveToSarkoth()
 ;ici ajouter fonction buff une fois qu'elle sera créé
-mouseClick("middle",238, 232)
+mouseClick("middle",238, 150)
 	sleep(2550)
 	mouseClick("middle",21, 374)
 	sleep(2550)
-	mouseClick("middle",24, 398)
+	mouseClick("middle",23, 484)
 	sleep(2450)
-	mouseClick("middle",12, 515)
+	mouseClick("middle",30, 232)
 	sleep(1350)
-mouseClick("middle",202, 419)
-	sleep(1550)
-mouseClick("left",750, 261)
-	sleep(500)
+mouseClick("middle",59, 648)
+	sleep(1750)
+mouseClick("left",681, 148)
+	sleep(100)
 	If isDead() Then
 		writeLog("Mort")
 		$sequenceError = 1
