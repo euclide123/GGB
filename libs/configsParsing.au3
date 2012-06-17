@@ -26,7 +26,7 @@ Func loadConfigs()
 	
 	;; Quest info
 	Global $makequest		= IniRead($iniConfigFile,"quest","questSelect",411)
-	
+	Global $act = Int($makequest/100)
 	;; Boss ou Area infos
 	Global $runBoss		= IniRead($iniConfigFile,"boss","bosstorun","iskatuex")
 	Global $ZONE_ISKATU			= "iskatu"

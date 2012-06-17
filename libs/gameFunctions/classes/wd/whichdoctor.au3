@@ -4,8 +4,7 @@ Func loadSequencewhich_doctor()
 
 
 		Switch $act
-		
-		
+			
 		Case 1 
 Send("{SHIFTDOWN}")
 Send("3")
