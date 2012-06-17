@@ -125,15 +125,29 @@ Func act3sellRepair()
 
 	;; on retourne en ville
 	Send("t")
-	$botInTown=1
+	
 	Sleep(8900)
 	;; on va au npc en haut a droite qui vend les potions
+	;; avant on check si on est pas mort pdent le tp
+		If isDead() Then
+		writeLog("Mort")
+		$sequenceError = 1
+		Return 1
+	EndIf
+	$botInTown=1
+	
 	MouseClick("left",36,617)
 	sleep(1800)
 	MouseClick("left",127,144)
 	Sleep(2000)
 	MouseClick("left",487,434)
 	Sleep(900)
+	;on re re check si on est pas mort
+			If isDead() Then
+		writeLog("Mort")
+		$sequenceError = 1
+		Return 1
+	EndIf
 	repair()
 	sleep(500)
 	sellItems()
