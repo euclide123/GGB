@@ -55,13 +55,8 @@ mouseClick("left",710, 172)
 	MouseClick("left",40,836)	
 	sleep(2400)	
 	MouseClick("left",375,258)
-	sleep(1800)		
-	MouseClick("left",864,175)	
-	sleep(1800)		
-	MouseClick("left",50,500)
-	sleep(10)	
-	MouseClick("middle",60,520)
-	sleep(1800)
+	sleep(1500)		
+
 	
 		attack()
 		
