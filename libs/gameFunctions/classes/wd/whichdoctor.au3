@@ -15,9 +15,9 @@ Sleep(Random(10,30,1))
 Local $i = 0
 Do
 
-MouseClick("right", Random(433,380,1), Random(300,330,1))
+MouseClick("right", Random(1050,1110,1), Random(460,480,1))
 Sleep(Random(10,30,1))
-MouseClick("left", Random(443,390,1), Random(300,330,1))
+MouseClick("left", Random(1050,1110,1), Random(450,480,1))
 Send("1")
 Sleep(Random(10,30,1))
 Send("2")
@@ -39,9 +39,9 @@ Sleep(Random(10,30,1))
 Local $i = 0
 Do
 
-MouseClick("right", Random(1150,370,1), Random(1160,380,1))
+MouseClick("right", Random(600,780,1), Random(550,749,1))
 Sleep(Random(10,30,1))
-MouseClick("left", Random(1145,370,1), Random(1155,380,1))
+MouseClick("left", Random(600,680,1), Random(550,749,1))
 Send("1")
 Sleep(Random(10,30,1))
 Send("2")
