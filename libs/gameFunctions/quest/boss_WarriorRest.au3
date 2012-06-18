@@ -47,6 +47,10 @@ mouseClick("left",1170, 373)
 		writeLog("On n'est plus dans la game")
 		$sequenceError = 1
 		Return 1
+				;dunno why mais il quitte pas donc hard quit
+			Send("{Escape}")
+			sleep(500)
+			MouseClick("left",626,524)
 	EndIf
 	sleep(800)
 	MouseClick("left",1069,407)
