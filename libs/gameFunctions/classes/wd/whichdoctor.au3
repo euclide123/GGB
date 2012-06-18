@@ -52,6 +52,8 @@ Until $i = 6
 
 MouseClick("middle",837,389)
 sleep(500)
+
+Local $i = 0
 Do
 
 MouseClick("right", Random(1050,1110,1), Random(460,480,1))
@@ -67,6 +69,7 @@ Until $i = 6
 MouseClick("middle",837,389)
 sleep(500)
 
+Local $i = 0
 Do
 
 MouseClick("right", Random(1050,1110,1), Random(460,480,1))
