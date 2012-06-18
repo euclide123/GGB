@@ -19,20 +19,20 @@ Func startQuest()
 		sleep(1000)
 		
 	ElseIf $makequest=122 then
-
-		MouseClick("left",501,259,15)
-		sleep(150)
-		MouseClick("left",239,489)
-		sleep(150)
-		MouseClick("left",250,342)
-		sleep(150)
-		MouseClick("left",237,420)
-		sleep(150)
+	;c est un quete ou il faut être sur un checkpoint bien precis, il n y à pas de raison de choisir la quete donc
+	;	MouseClick("left",501,259,15)
+	;	sleep(150)
+	;	MouseClick("left",239,489)
+	;	sleep(150)
+	;	MouseClick("left",250,342)
+	;	sleep(150)
+	;	MouseClick("left",237,420)
+	;	sleep(150)
 		MouseClick("left",852,784)
-		sleep(1000)	
+		sleep(200)	
 		
 	ElseIf $makequest=151 then
-	;$act=1
+
 		MouseClick("left",501,259,15)
 		sleep(200)
 		MouseClick("left",250,506)
@@ -43,13 +43,13 @@ Func startQuest()
 		sleep(1000)
 		
 		ElseIf $makequest=163 then
-	;$act=1
+
 	;c est un quete ou il faut être sur un checkpoint bien precis, il ne faut donc pas recrer la quest
 		MouseClick("left",852,784)
 		sleep(200)
 		
 	ElseIf $makequest=411 then
-	;$act=4
+
 		MouseClick("left",501,259,15)
 		sleep(200)
 		MouseClick("left",250,287)
