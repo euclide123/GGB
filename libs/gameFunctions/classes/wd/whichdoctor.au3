@@ -4,7 +4,8 @@ Func loadSequencewhich_doctor()
 
 
 		Switch $makequest
-			
+
+;cas quete 1.2.2		
 		Case 122 
 Send("{SHIFTDOWN}")
 Send("3")
@@ -28,7 +29,7 @@ Until $i = 6
 Send("{SHIFTUP}")
 
 		
-			
+;cas quete 1.6.3			
 		Case 163
 Send("{SHIFTDOWN}")
 Send("3")
@@ -51,7 +52,7 @@ Until $i = 20
 
 Send("{SHIFTUP}")
 		
-		
+;cas quete 4.1.1		
 		Case 411
 ;skill recommande http://eu.battle.net/d3/en/calculator/witch-doctor#ZfUdPQ!TUe!acZZbZ
 Send("{SHIFTDOWN}")

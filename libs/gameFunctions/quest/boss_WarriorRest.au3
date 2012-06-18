@@ -11,6 +11,7 @@
 ; !!! On part du checkpoint repos du guerrier!!!
 Func act1moveToWarriorRest()
 ;ici ajouter fonction buff une fois qu'elle sera créé
+writeLog("Deplacement dans le warriors rest")
 mouseClick("left",1225, 242)
 	sleep(2650)
 mouseClick("left",1200, 476)
@@ -25,16 +26,16 @@ mouseClick("left",1170, 373)
 	sleep(300)	
 	
 
-	
+writeLog("A l attaque")	
 		attack()
-		
+writeLog("Attaque finie")			
 
 	
 	sleep(800)
 	MouseClick("left",1069,407)
 	sleep(1000)
-
+writeLog("Pickit")	
 	pickit()
-
+writeLog("Pickit fini")	
 
 	EndFunc
