@@ -47,7 +47,7 @@ Sleep(Random(10,30,1))
 Send("2")
  
  $i = $i + 1
-Until $i = 15
+Until $i = 20
 
 Send("{SHIFTUP}")
 		

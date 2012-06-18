@@ -20,7 +20,7 @@ mouseClick("left",1077, 269)
 mouseClick("left",1089, 252)
 	sleep(2350)		
 mouseClick("left",1189, 418)
-	sleep(1000)		
+	sleep(2000)		
 	
 
 	
