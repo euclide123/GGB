@@ -56,8 +56,9 @@ AutoItSetOption("GUIOnEventMode",1)
 #include "libs/gameFunctions/quest/questSelection.au3"
 
 ;; include des boss/area
-#include "libs/gameFunctions/quest/boss_Iskatu.au3"
 #include "libs/gameFunctions/quest/boss_Sarkoth.au3"
+#include "libs/gameFunctions/quest/boss_WarriorRest.au3"
+#include "libs/gameFunctions/quest/boss_Iskatu.au3"
 
 ;; Raccourcis clavier
 HotKeySet("{PAUSE}","togglePause")
