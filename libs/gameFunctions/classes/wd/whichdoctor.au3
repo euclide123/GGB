@@ -48,7 +48,36 @@ Sleep(Random(10,30,1))
 Send("2")
  
  $i = $i + 1
-Until $i = 20
+Until $i = 6
+
+MouseClick("middle",837,389)
+sleep(500)
+Do
+
+MouseClick("right", Random(1050,1110,1), Random(460,480,1))
+Sleep(Random(10,30,1))
+MouseClick("left", Random(1050,1110,1), Random(450,480,1))
+Send("1")
+Sleep(Random(10,30,1))
+Send("2")
+ 
+ $i = $i + 1
+Until $i = 6
+
+MouseClick("middle",837,389)
+sleep(500)
+
+Do
+
+MouseClick("right", Random(1050,1110,1), Random(460,480,1))
+Sleep(Random(10,30,1))
+MouseClick("left", Random(1050,1110,1), Random(450,480,1))
+Send("1")
+Sleep(Random(10,30,1))
+Send("2")
+ 
+ $i = $i + 1
+Until $i = 6
 
 Send("{SHIFTUP}")
 		
