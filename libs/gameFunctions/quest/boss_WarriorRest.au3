@@ -11,6 +11,9 @@
 ; !!! On part du checkpoint repos du guerrier!!!
 Func act1moveToWarriorRest()
 ;ici ajouter fonction buff une fois qu'elle sera créé
+
+;tout d'abbord on ferme la fenetre objectif car l'icone des temoins entre en conflict avec pickit
+mouseClick("left",1226, 345)
 writeLog("Deplacement dans le warriors rest")
 mouseClick("left",1225, 242)
 	sleep(2650)
