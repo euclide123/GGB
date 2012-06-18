@@ -12,14 +12,14 @@
 Func act1moveToWarriorRest()
 ;ici ajouter fonction buff une fois qu'elle sera créé
 mouseClick("left",1225, 242)
-	sleep(2850)
+	sleep(2650)
 mouseClick("left",1200, 476)
-	sleep(1850)	
+	sleep(1650)	
 mouseClick("left",1077, 269)
-	sleep(2450)		
+	sleep(2350)		
 mouseClick("left",1089, 252)
-	sleep(2450)		
-mouseClick("left",814, 418)
+	sleep(2350)		
+mouseClick("left",1189, 418)
 	sleep(1000)		
 	
 
