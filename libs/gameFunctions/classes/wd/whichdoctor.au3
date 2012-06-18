@@ -50,6 +50,7 @@ Send("2")
  $i = $i + 1
 Until $i = 6
 
+sleep(50)
 MouseClick("middle",837,450)
 sleep(700)
 
@@ -66,6 +67,7 @@ Send("2")
  $i = $i + 1
 Until $i = 6
 
+sleep(50)
 MouseClick("middle",837,400)
 sleep(700)
 
