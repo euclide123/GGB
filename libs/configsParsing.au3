@@ -31,6 +31,7 @@ Func loadConfigs()
 	Global $runBoss		= IniRead($iniConfigFile,"boss","bosstorun","iskatuex")
 	Global $ZONE_ISKATU			= "iskatu"
 	Global $TYPE_DANK_CELLAR	= "sarkoth"
+	Global $TYPE_WARRIOR_REST	= "warriorrest"
 
 	;; type des personnages :
 	Global $TYPE_SORC	= 1

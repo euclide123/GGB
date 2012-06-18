@@ -74,6 +74,8 @@ Func choseBoss()
 			act3moveToTyraelIskatu()
 		Case $TYPE_DANK_CELLAR
 			act1moveToSarkoth()
+		Case $TYPE_WARRIOR_REST
+			act1moveToWarriorRest()
 
 	EndSwitch
 		If $sequenceError Then

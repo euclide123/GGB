@@ -29,6 +29,8 @@ Func loadGame()
 			act3sellRepair()
 		Case $TYPE_DANK_CELLAR
 			act1sellRepair()
+		Case $TYPE_WARRIOR_REST
+			act1sellRepair()
 	EndSwitch	
 	EndIf
 	
