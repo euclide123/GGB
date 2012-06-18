@@ -32,11 +32,11 @@ mouseClick("left",1170, 373)
 	If isDead() Then
 		writeLog("Mort")
 		$sequenceError = 1
-		Return 1
 		;dunno why mais il quitte pas donc hard quit
 			Send("{Escape}")
 			sleep(500)
 			MouseClick("left",626,524)
+		Return 1
 	EndIf
 	If getGameLength() >= $gameMaxLength Then
 		writeLog("Game Timeout")
@@ -46,11 +46,11 @@ mouseClick("left",1170, 373)
 	If Not checkGameStatus() Or Not checkInGame() Then
 		writeLog("On n'est plus dans la game")
 		$sequenceError = 1
-		Return 1
-				;dunno why mais il quitte pas donc hard quit
+			;dunno why mais il quitte pas donc hard quit
 			Send("{Escape}")
 			sleep(500)
 			MouseClick("left",626,524)
+		Return 1
 	EndIf
 	sleep(800)
 	MouseClick("left",1069,407)
