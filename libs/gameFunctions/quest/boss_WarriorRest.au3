@@ -34,7 +34,7 @@ writeLog("Attaque finie")
 		$sequenceError = 1
 		Return 1
 	EndIf
-	ExitLoop
+	
 
 writeLog("Positionnement pickit")	
 	sleep(800)
