@@ -19,8 +19,10 @@ mouseClick("left",1077, 269)
 	sleep(2350)		
 mouseClick("left",1089, 252)
 	sleep(2350)		
-mouseClick("left",1189, 418)
-	sleep(2000)		
+mouseClick("left",1170, 373)
+	sleep(2300)		
+	mouseClick("left",738, 534)
+	sleep(300)	
 	
 
 	
@@ -31,6 +33,10 @@ mouseClick("left",1189, 418)
 		writeLog("Mort")
 		$sequenceError = 1
 		Return 1
+		;dunno why mais il quitte pas donc hard quit
+			Send("{Escape}")
+			sleep(500)
+			MouseClick("left",626,524)
 	EndIf
 	If getGameLength() >= $gameMaxLength Then
 		writeLog("Game Timeout")
