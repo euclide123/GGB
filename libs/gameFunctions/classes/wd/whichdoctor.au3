@@ -51,8 +51,8 @@ Send("2")
 Until $i = 6
 
 sleep(50)
-MouseClick("middle",837,450)
-sleep(700)
+MouseClick("middle",1050,480)
+sleep(500)
 
 Local $i = 0
 Do
@@ -68,8 +68,8 @@ Send("2")
 Until $i = 6
 
 sleep(50)
-MouseClick("middle",837,400)
-sleep(700)
+MouseClick("middle",1050,480)
+sleep(500)
 
 Local $i = 0
 Do
