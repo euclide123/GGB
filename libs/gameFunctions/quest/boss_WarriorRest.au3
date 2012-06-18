@@ -25,7 +25,7 @@ mouseClick("middle",1089, 252)
 	sleep(2350)		
 mouseClick("middle",1170, 373)
 	sleep(2300)		
-	mouseClick("middle",738, 534)
+	mouseClick("middle",738, 480)
 	sleep(300)	
 	
 
@@ -46,10 +46,30 @@ writeLog("Attaque finie")
 
 writeLog("Positionnement pickit")	
 	sleep(800)
-	MouseClick("left",1069,407)
+	MouseClick("left",700,407)
 	sleep(1000)
+		If isDead() Then
+		writeLog("Mort")
+	Send("{Escape}")
+	writeLog("Escape")
+	sleep(500)
+	MouseClick("left",626,524)
+	return 0
+		$sequenceError = 1
+		Return 1
+	EndIf
 writeLog("Pickit")	
 	pickit()
 writeLog("Pickit fini")	
+	If isDead() Then
+		writeLog("Mort")
+	Send("{Escape}")
+	writeLog("Escape")
+	sleep(500)
+	MouseClick("left",626,524)
+	return 0
+		$sequenceError = 1
+		Return 1
+	EndIf
 
 	EndFunc
