@@ -31,6 +31,11 @@ writeLog("A l attaque")
 writeLog("Attaque finie")			
 	If isDead() Then
 		writeLog("Mort")
+	Send("{Escape}")
+	writeLog("Escape")
+	sleep(500)
+	MouseClick("left",626,524)
+	return 0
 		$sequenceError = 1
 		Return 1
 	EndIf
