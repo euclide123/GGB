@@ -29,8 +29,14 @@ mouseClick("left",1170, 373)
 writeLog("A l attaque")	
 		attack()
 writeLog("Attaque finie")			
+	If isDead() Then
+		writeLog("Mort")
+		$sequenceError = 1
+		Return 1
+	EndIf
+	ExitLoop
 
-	
+writeLog("Positionnement pickit")	
 	sleep(800)
 	MouseClick("left",1069,407)
 	sleep(1000)
