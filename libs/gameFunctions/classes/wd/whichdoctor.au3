@@ -50,8 +50,8 @@ Send("2")
  $i = $i + 1
 Until $i = 6
 
-MouseClick("middle",837,389)
-sleep(500)
+MouseClick("middle",837,450)
+sleep(700)
 
 Local $i = 0
 Do
@@ -66,8 +66,8 @@ Send("2")
  $i = $i + 1
 Until $i = 6
 
-MouseClick("middle",837,389)
-sleep(500)
+MouseClick("middle",837,400)
+sleep(700)
 
 Local $i = 0
 Do
