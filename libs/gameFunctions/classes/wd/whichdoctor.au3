@@ -3,9 +3,9 @@
 Func loadSequencewhich_doctor()	
 
 
-		Switch $act
+		Switch $makequest
 			
-		Case 1 
+		Case 122 
 Send("{SHIFTDOWN}")
 Send("3")
 Sleep(Random(10,30,1))
@@ -26,9 +26,33 @@ Send("2")
 Until $i = 6
 
 Send("{SHIFTUP}")
+
+		
+			
+		Case 163
+Send("{SHIFTDOWN}")
+Send("3")
+Sleep(Random(10,30,1))
+Send("4")
+Sleep(Random(10,30,1))
+
+Local $i = 0
+Do
+
+MouseClick("right", Random(1150,370,1), Random(1160,380,1))
+Sleep(Random(10,30,1))
+MouseClick("left", Random(1145,370,1), Random(1155,380,1))
+Send("1")
+Sleep(Random(10,30,1))
+Send("2")
+ 
+ $i = $i + 1
+Until $i = 15
+
+Send("{SHIFTUP}")
 		
 		
-		Case 3
+		Case 411
 ;skill recommande http://eu.battle.net/d3/en/calculator/witch-doctor#ZfUdPQ!TUe!acZZbZ
 Send("{SHIFTDOWN}")
 Send("3")
