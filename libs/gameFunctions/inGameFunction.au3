@@ -66,7 +66,7 @@ EndFunc
 
 Func pickit()
 	send("{ALT}")
-	sleep(500)
+	sleep(400)
 	$pickitStart=_NowCalc()
 
 	while $pickSet And checkGameStatus() And checkInGame() And (_DateDiff("s", $pickitStart, _NowCalc()) <= $pickitTimeout)	;; sets
@@ -76,7 +76,7 @@ Func pickit()
 		$itemPos= PixelSearch(150,150,1252,826,0x00FF00,1)
 		If Not @error Then
 			MouseClick("left",$itemPos[0],$itemPos[1],1,1)
-			sleep(1000)
+			sleep(700)
 		Else
 			ExitLoop
 		EndIf
@@ -88,7 +88,7 @@ Func pickit()
 		$itemPos= PixelSearch(150,150,1252,826,0xBF642F,1)
 		If Not @error Then
 			MouseClick("left",$itemPos[0],$itemPos[1],1,1)
-			sleep(1000)
+			sleep(700)
 		Else
 			ExitLoop
 		EndIf
@@ -99,7 +99,7 @@ Func pickit()
 		$itemPos= PixelSearch(150,150,1252,826,0xFFFF00,1)
 		If Not @error Then
 			MouseClick("left",$itemPos[0],$itemPos[1],1,1)
-			sleep(1000)
+			sleep(700)
 		Else
 			ExitLoop
 		EndIf
@@ -111,7 +111,7 @@ Func pickit()
 		$itemPos= PixelSearch(150,150,1252,826,0x6464EF,1)
 		If Not @error Then
 			MouseClick("left",$itemPos[0],$itemPos[1],1,1)
-			sleep(1000)
+			sleep(700)
 		Else
 			ExitLoop
 		EndIf
