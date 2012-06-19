@@ -25,6 +25,10 @@ mouseClick("left",710, 172)
 	sleep(2000)
 	If isDead() Then
 		writeLog("Mort")
+			Send("{Escape}")
+	writeLog("Escape")
+	sleep(500)
+	MouseClick("left",626,524)
 		$sequenceError = 1
 		Return 1
 	EndIf
@@ -74,6 +78,7 @@ mouseClick("left",710, 172)
 	If Not checkGameStatus() Or Not checkInGame() Then
 		writeLog("On n'est plus dans la game")
 		$sequenceError = 1
+		
 		Return 1
 	EndIf
 	sleep(1000)
