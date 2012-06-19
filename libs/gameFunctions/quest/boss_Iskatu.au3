@@ -110,21 +110,21 @@ Func act3moveToTyraelIskatu()
 		$sequenceError = 1
 		Return 1
 	EndIf
-	sleep(1000)
+	sleep(800)
 	MouseClick("left",844,574)
-	sleep(1000)
+	sleep(800)
 	MouseClick("left",430,582)
-	sleep(1000)
+	sleep(800)
 	MouseClick("left",460,330)
-	Sleep(1000)
+	Sleep(800)
 	MouseClick("left",804,290)
-	Sleep(1000)
+	Sleep(800)
 	MouseClick("left",628,866)
-	sleep(500)
+	sleep(300)
 	send("{SPACE}")
 	sleep(200)
 	send("{SPACE}")
-		sleep(500)
+		sleep(400)
 
 	pickit()
 	
