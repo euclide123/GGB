@@ -42,6 +42,15 @@ Func loadConfigs()
 	
 	;; character options
 	Global $charType 	= IniRead($iniConfigFile,"characterConfig","characterType",0)
+
+	;; shortcut config
+	Global $skill1		= IniRead($iniConfigFile,"shortcut","skill1",1)
+	Global $skill2		= IniRead($iniConfigFile,"shortcut","skill1",2)
+	Global $skill3		= IniRead($iniConfigFile,"shortcut","skill1",3)
+	Global $skill4		= IniRead($iniConfigFile,"shortcut","skill1",4)
+	Global $potionDrink	= IniRead($iniConfigFile,"shortcut","potionDrink","Q")
+	Global $skipDialog	= IniRead($iniConfigFile,"shortcut","skipDialog","SPACE")
+	
 	;; imagesearch options
 	Global $imgSearchTolerance 	= IniRead($iniConfigFile,"imagesearch","tolerance",0)
 	
@@ -66,16 +75,6 @@ Func loadConfigs()
 	Global $cinmaticTimeout		= IniRead($iniConfigFile,"timeOut","cinematicTimeOut",600)
 	Global $waitInGameTimeout	= IniRead($iniConfigFile,"timeOut","waitInGame",300)
 	Global $pickitTimeout		= IniRead($iniConfigFile,"timeOut","pickitTimeout",180)
-		
-	;; shortcut config
-	Global $skill1		= IniRead($iniConfigFile,"shortcut","skill1",1)
-	Global $skill2		= IniRead($iniConfigFile,"shortcut","skill1",2)
-	Global $skill3		= IniRead($iniConfigFile,"shortcut","skill1",3)
-	Global $skill4		= IniRead($iniConfigFile,"shortcut","skill1",4)
-	Global $potionDrink	= IniRead($iniConfigFile,"shortcut","potionDrink","Q")
-	Global $skipDialog	= IniRead($iniConfigFile,"shortcut","skipDialog","SPACE")
-	
-
 	
 	
 	Local $error=0

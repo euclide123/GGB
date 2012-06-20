@@ -36,11 +36,6 @@ Func checkLobbyStart()
 	Return checkPixel($lobbyStart) Or checkPixel($lobbyStartHover)
 EndFunc
     
-Func checkQuestContinue()
-	Return checkPixel($questDonePopup,30,5)
-	;Return _Imagesearch($lobbyQuestValid,1,$imgSearchX,$imgSearchY,$imgSearchTolerance)
-EndFunc
-
 Func act3CheckQuestDone()
 	Return checkPixel($questDonePopup,30,5)
 	;return _Imagesearch($gameQuestDone,1,$imgSearchX,$imgSearchY,$imgSearchTolerance)

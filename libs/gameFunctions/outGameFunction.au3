@@ -133,7 +133,6 @@ Func selectQuest()
 		sleep(200)
 		$selectDiff=1
 	EndIf
-
 	startQuest()
 	
 	sleep(1000)

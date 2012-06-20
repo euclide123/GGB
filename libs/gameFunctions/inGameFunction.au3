@@ -38,7 +38,7 @@ EndFunc
 
 func skipCinematic()
 	$maxLoop = 0
-	while ("000000" <> hex(PixelGetColor (517,37),6)) And $maxLoop <= $cinmaticTimeout And checkGameStatus() And checkInGame()
+	while ("000000" <> hex(PixelGetColor (385,33),6)) And $maxLoop <= $cinmaticTimeout And checkGameStatus() And checkInGame()
 		Sleep(100)
 		$maxLoop += 1
 	WEnd
@@ -191,9 +191,9 @@ Func repair()
 			MouseClick("left",234,536)
 			sleep(500)
 		Case 3
-			MouseClick("left",465,324)
+			MouseClick("left",280,198)
 			sleep(500)
-			MouseClick("left",234,536)
+			MouseClick("left",143,327)
 			sleep(500)
 	EndSwitch	
 EndFunc

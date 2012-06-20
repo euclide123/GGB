@@ -14,6 +14,12 @@
 
 #ce ----------------------------------------------------------------------------
 #Region ;**** Directives created by AutoIt3Wrapper_GUI ****
+#RequireAdmin
+$Admin = IsAdmin() 
+if $Admin <> 1 Then
+	MsgBox(4096,"Erreur","Vous devez lancer le bot en mode administrateur !")
+	Exit
+EndIf
 #AutoIt3Wrapper_UseUpx=n
 #AutoIt3Wrapper_UseX64=n
 #AutoIt3Wrapper_Res_requestedExecutionLevel=asInvoker
@@ -27,6 +33,7 @@ AutoItSetOption("GUIOnEventMode",1)
 
 ;; include des lib AutoIt
 #include <ButtonConstants.au3>
+#include <ComboConstants.au3>
 #include <EditConstants.au3>
 #include <GUIConstants.au3>
 #include <GUIConstantsEx.au3>
@@ -43,7 +50,6 @@ AutoItSetOption("GUIOnEventMode",1)
 #include "botConfig.au3"
 #include "libs/configsParsing.au3"
 #include "libs/botStats.au3"
-#include "libs/configsParsing.au3"
 #include "libs/variables.au3"
 
 #include "libs/gameFunctions/gameChecks.au3"
@@ -110,19 +116,20 @@ WEnd
 
 Func editConfig()
 	If $botStatus == 0 Then
-		RunWait("configHelper.exe")
-		loadConfigs()
+		openConfigGGB()
 	EndIf
 EndFunc
 
 Func togglePause()
 	If $botStatus <> 0 Then
+		GUISetState(@SW_RESTORE,$handlerGUI)
 		$Paused = NOT $Paused
 		While $Paused 
 			$botStatus = 2
 			WinSetTitle($handlerGUI,"",$baseTitle&" - Pause")
 			sleep(100)
 		WEnd
+		GUISetState(@SW_MINIMIZE,$handlerGUI)
 		WinSetTitle($handlerGUI,"",$baseTitle&" - Running")
 		$botStatus = 1
 	EndIf
