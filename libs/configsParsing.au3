@@ -6,7 +6,7 @@
 	Liste des variables utilisées par le script
 	
 #ce ----------------------------------------------------------------------------
-
+Global $iniConfigFile="configs/configs.ini"
 
 Func loadConfigs()
 
@@ -27,6 +27,13 @@ Func loadConfigs()
 	Global $character		= IniRead($iniConfigFile,"gameConfig","character",1)
 	Global $runModRepSell	= IniRead($iniConfigFile,"gameConfig","repairSellRun",10)
 	
+	;; Quest info
+	Global $makequest		= IniRead($iniConfigFile,"quest","questSelect",411)
+	Global $act 			= Int($makequest/100)
+	
+	;; Boss ou Area infos
+	Global $runBoss				= IniRead($iniConfigFile,"boss","bosstorun","iskatuex")
+	
 	;; pickit options
 	Global $pickMagic	= IniRead($iniConfigFile,"pickitOptions","takeMagic",1)
 	Global $pickRare	= IniRead($iniConfigFile,"pickitOptions","takeRare",1)
@@ -35,15 +42,6 @@ Func loadConfigs()
 	
 	;; character options
 	Global $charType 	= IniRead($iniConfigFile,"characterConfig","characterType",0)
-	
-	;; shortcut config
-	Global $skill1		= IniRead($iniConfigFile,"shortcut","skill1",1)
-	Global $skill2		= IniRead($iniConfigFile,"shortcut","skill1",2)
-	Global $skill3		= IniRead($iniConfigFile,"shortcut","skill1",3)
-	Global $skill4		= IniRead($iniConfigFile,"shortcut","skill1",4)
-	Global $potionDrink	= IniRead($iniConfigFile,"shortcut","potionDrink","Q")
-	Global $skipDialog	= IniRead($iniConfigFile,"shortcut","skipDialog","SPACE")
-	
 	;; imagesearch options
 	Global $imgSearchTolerance 	= IniRead($iniConfigFile,"imagesearch","tolerance",0)
 	
@@ -64,10 +62,20 @@ Func loadConfigs()
 	Global $lobbyTimeout		= IniRead($iniConfigFile,"timeOut","lobbyTimeout",120)
 	Global $gameMaxLength		= IniRead($iniConfigFile,"timeOut","gameMaxLength",180)
 	Global $findNpcTimeout		= IniRead($iniConfigFile,"timeOut","findNpcTimeOut",100)
+	Global $findCellarTimeOut	= IniRead($iniConfigFile,"timeOut","findCellarTimeOut",30)
 	Global $cinmaticTimeout		= IniRead($iniConfigFile,"timeOut","cinematicTimeOut",600)
 	Global $waitInGameTimeout	= IniRead($iniConfigFile,"timeOut","waitInGame",300)
 	Global $pickitTimeout		= IniRead($iniConfigFile,"timeOut","pickitTimeout",180)
+		
+	;; shortcut config
+	Global $skill1		= IniRead($iniConfigFile,"shortcut","skill1",1)
+	Global $skill2		= IniRead($iniConfigFile,"shortcut","skill1",2)
+	Global $skill3		= IniRead($iniConfigFile,"shortcut","skill1",3)
+	Global $skill4		= IniRead($iniConfigFile,"shortcut","skill1",4)
+	Global $potionDrink	= IniRead($iniConfigFile,"shortcut","potionDrink","Q")
+	Global $skipDialog	= IniRead($iniConfigFile,"shortcut","skipDialog","SPACE")
 	
+
 	
 	
 	Local $error=0

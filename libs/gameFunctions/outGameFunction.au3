@@ -17,6 +17,7 @@ Func waitForGameStart()
 	Local $pid = ProcessWait("Diablo III.exe",30)
 	If $pid <> 0 Then
 		;; on attend que la windows diabloIII apparaisse
+
 		WinWait("[CLASS:D3 Main Window Class]")
 
 		Local $maxLoop = 0 ;; 2min
@@ -74,19 +75,22 @@ Func login()
 		send("{ENTER}")		;; valid le formulaire
 		sleep(500)
 		
-		
 		;; on check si les popup avec les check sont présents
+
 		Local $startTry = _NowCalc()
 		While Not checkPopupConnected() And _DateDiff("s", $startTry, _NowCalc()) < 120
 			sleep(100)
 		WEnd
+
 		While Not checkPopupVerif() And _DateDiff("s", $startTry, _NowCalc()) < 120
 			sleep(100)
 		WEnd
+
 		;; si on entre là, on est forcément connecté
 		While Not checkPopupRecup()  And _DateDiff("s", $startTry, _NowCalc()) < 120
 			sleep(100)
 		WEnd
+
 		sleep(1000)
 		If _DateDiff("s", $startTry, _NowCalc()) < 120 Then
 			WriteLog($msgConnected)
@@ -129,24 +133,14 @@ Func selectQuest()
 		sleep(200)
 		$selectDiff=1
 	EndIf
-	;; on monte en haut de la barre de défilement
-	MouseClick("left",323,160,20)
-	sleep(200)
-	;; et on prend la premiere quest
-	MouseClick("left",179,173) 
-	sleep(200)
-	;; on descend tout en bas
-	MouseClick("left",321,413,20)
-	sleep(200)
-	;; et on choisit la bonne quest
-	MouseClick("left",171,319)
-	sleep(200)
-	;; on valide la quest
-	MouseClick("left",529,480)
+
+	startQuest()
+	
 	sleep(1000)
-	;; et on ferme la popup
-	MouseClick("left",337,349)
+	MouseClick("left", 527,572)
 	sleep(500)
+	
+
 EndFunc
 
 

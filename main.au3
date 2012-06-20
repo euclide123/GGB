@@ -2,6 +2,7 @@
 
  AutoIt Version: 3.3.8.1
  Author: Anakha
+ Modif : Eucli
 
  Description
 	Start script du bot où on crée le dialog pour 
@@ -13,12 +14,6 @@
 
 #ce ----------------------------------------------------------------------------
 #Region ;**** Directives created by AutoIt3Wrapper_GUI ****
-#RequireAdmin
-$Admin = IsAdmin() 
-if $Admin <> 1 Then
-	MsgBox(4096,"Erreur","Vous devez lancer le bot en mode administrateur !")
-	Exit
-EndIf
 #AutoIt3Wrapper_UseUpx=n
 #AutoIt3Wrapper_UseX64=n
 #AutoIt3Wrapper_Res_requestedExecutionLevel=asInvoker
@@ -29,9 +24,9 @@ AutoItSetOption("MouseCoordMode",2)
 AutoItSetOption("PixelCoordMode",2)    
 AutoItSetOption("GUIOnEventMode",1)
 
+
 ;; include des lib AutoIt
 #include <ButtonConstants.au3>
-#include <ComboConstants.au3>
 #include <EditConstants.au3>
 #include <GUIConstants.au3>
 #include <GUIConstantsEx.au3>
@@ -48,10 +43,27 @@ AutoItSetOption("GUIOnEventMode",1)
 #include "botConfig.au3"
 #include "libs/configsParsing.au3"
 #include "libs/botStats.au3"
+#include "libs/configsParsing.au3"
+#include "libs/variables.au3"
+
 #include "libs/gameFunctions/gameChecks.au3"
 #include "libs/gameFunctions/outGameFunction.au3"
 #include "libs/gameFunctions/inGameFunction.au3"
 #include "libs/commonFunctions.au3"
+
+;; include des classes de personnages
+#include "libs/gameFunctions/classes/wd/whichdoctor.au3"
+#include "libs/gameFunctions/classes/barb/barb.au3"
+#include "libs/gameFunctions/classes/dh/deamonhunter.au3"
+#include "libs/gameFunctions/classes/monk/monk.au3"
+#include "libs/gameFunctions/classes/wiz/wizzard.au3"
+;; include des quest
+#include "libs/gameFunctions/quest/questSelection.au3"
+
+;; include des boss/area
+#include "libs/gameFunctions/quest/boss_Sarkoth.au3"
+#include "libs/gameFunctions/quest/boss_WarriorRest.au3"
+#include "libs/gameFunctions/quest/boss_Iskatu.au3"
 
 ;; Raccourcis clavier
 HotKeySet("{PAUSE}","togglePause")
@@ -98,20 +110,19 @@ WEnd
 
 Func editConfig()
 	If $botStatus == 0 Then
-		openConfigGGB()
+		RunWait("configHelper.exe")
+		loadConfigs()
 	EndIf
 EndFunc
 
 Func togglePause()
 	If $botStatus <> 0 Then
-		GUISetState(@SW_RESTORE,$handlerGUI)
 		$Paused = NOT $Paused
 		While $Paused 
 			$botStatus = 2
 			WinSetTitle($handlerGUI,"",$baseTitle&" - Pause")
 			sleep(100)
 		WEnd
-		GUISetState(@SW_MINIMIZE,$handlerGUI)
 		WinSetTitle($handlerGUI,"",$baseTitle&" - Running")
 		$botStatus = 1
 	EndIf
@@ -299,5 +310,4 @@ Func killGame()
 		ProcessClose($pid)
 	EndIf	
 EndFunc
-
 

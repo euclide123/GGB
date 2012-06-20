@@ -9,7 +9,6 @@
 
 #ce ----------------------------------------------------------------------------
 
-
 Func checkLoginBtn()
 	Return checkPixel($loginWindow)
 EndFunc
@@ -35,6 +34,11 @@ EndFunc
 
 Func checkLobbyStart()
 	Return checkPixel($lobbyStart) Or checkPixel($lobbyStartHover)
+EndFunc
+    
+Func checkQuestContinue()
+	Return checkPixel($questDonePopup,30,5)
+	;Return _Imagesearch($lobbyQuestValid,1,$imgSearchX,$imgSearchY,$imgSearchTolerance)
 EndFunc
 
 Func act3CheckQuestDone()

@@ -2,7 +2,6 @@
 Global $prefName="configs/D3Prefs.txt"
 Global $iniConfigFile="configs/configs.ini"
 Global $botDir=@WorkingDir
-
 ;; bot status
 Global $botStatus=0	;; 0=stopped, 1=running, 2=paused
 Global $Paused
@@ -52,7 +51,9 @@ Global $TYPE_MONK	= 2
 Global $TYPE_DH		= 3
 Global $TYPE_BARB	= 4
 Global $TYPE_WD		= 5
-
+Global $ZONE_ISKATU			= "iskatu"
+Global $TYPE_DANK_CELLAR	= "sarkoth"
+Global $TYPE_WARRIOR_REST	= "warriorrest"
 ;; error in sequence : abort game and start a new
 Global $sequenceError
 Global $restartDiablo=0
@@ -89,6 +90,7 @@ Global $gameMarketMisc		= 'img/game_market_misc.bmp'
 Global $gameQuestDone		= 'img/game_quest_done.bmp'
 Global $gameResBtn			= 'img/game_res_btn.bmp'
 Global $gameResBtnRed		= 'img/game_res_btn_red.bmp'
+
 
 ;; PixelGetColor				= [x,y,color]
 Global $loginWindow[3]			= [336,474,0x0C0504]
